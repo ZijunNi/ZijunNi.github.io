@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LaTeX初学手记</title>
+<meta charset='utf-8'>
+<link href='https://cdn.maxiang.io/res-min/themes/marxico.css' rel='stylesheet'>
+<style>.note-content , .note-content  div {font-size: 20px;}
+
+.note-content  {font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;}
+body {background-color: #FAEBD7}
+h1 {font-family:KaiTi_GB2312，Georgia;}
+body {font-family: 苹方，Georgia;}
+body {
+padding-top: 5%;
+padding-right: 20%;
+padding-left: 20%;
+padding-bottom: 20%;
+counter-reset: section;
+}
+h2 {
+padding-left: 1%;
+font-family:KaiTi_GB2312，Georgia;
+counter-reset: subsection;
+}
+h2::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+  }
+h3 {
+padding-left: 2%;
+font-family:KaiTi_GB2312，Georgia;
+counter-reset: subsubsection;
+}
+h3::before {
+    counter-increment: subsection;
+    content: counter(section) "." counter(subsection) ". ";
+  }
+h4 {
+padding-left: 3%;
+font-family:KaiTi_GB2312，Georgia;
+}
+h4::before {
+    counter-increment: subsubsection;
+    content: counter(section) "." counter(subsection) "." counter(subsubsection) ". ";
+  }
+
+.note-content  {color: black;}
+</style>
+</head>
+<body>
+<div id='preview-contents' class='note-content'>
+                        
+                    
+
+<h1 id="latex初学手记"><center>LaTeX初学手记</center></h1>
+
+<h2 id="目录">目录</h2>
+
+<div class="toc"><font size = "3">
+<ul>
+<li><a href="#latex初学手记">LaTeX初学手记</a><ul>
+<li><a href="#入门">入门</a></li>
+<li><a href="#公式">公式</a><ul>
+<li><a href="#表示方法">表示方法</a><ul>
+<li><a href="#行内公式">行内公式</a></li>
+</ul>
+</li>
+<li><a href="#行间公式">行间公式</a></li>
+<li><a href="#公式环境">公式环境</a></li>
+<li><a href="#相关代码">相关代码</a></li>
+</ul>
+</li>
+<li><a href="#表格">表格</a><ul>
+<li><a href="#普通表格">普通表格</a></li>
+<li><a href="#长表格">长表格</a></li>
+<li><a href="#表格必杀技">表格必杀技</a></li>
+</ul>
+</li>
+<li><a href="#图片">图片</a><ul>
+<li><a href="#插入方法">插入方法</a></li>
+</ul>
+</li>
+<li><a href="#引用">引用</a><ul>
+<li><a href="#图片和表格的引用">图片和表格的引用</a></li>
+<li><a href="#方程的引用">方程的引用</a></li>
+</ul>
+</li>
+<li><a href="#其他问题">其他问题</a><ul>
+<li><a href="#半角标点">半角标点</a></li>
+<li><a href="#错误识别">错误识别</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#设置问题">设置问题</a></li>
+</ul>
+</li>
+</ul>
+</font>
+</div>
+
+<h2 id="更新">2023年3月21日更新</h2>
+LaTeX自带的TexWork编译器比较难看也比较难用，<a href="https://zhuanlan.zhihu.com/p/38178015" target="_blank">这里</a>推荐一个很好的知乎教程教你如何在VS Code软件中书写和编译LaTeX文件。
+
+
+
+<h2 id="入门">入门</h2>
+
+<p>下载地址<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso" target="_blank">清华镜像</a>和<a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/" target="_blank">中国科大镜像（下载texliveYYYY.iso或者texlive.iso均可）</a></p>
+<p>废话不多说<font size = "2" color = "grey">（要不是字丑我何必去学这玩意。。。）</font>，先看LaTex文档的基本结构吧：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">documentclass</span><span class="hljs-string">{ctexart}</span></span><span class="hljs-comment">%这里说明了文档的排版格式，ctex表示是中文排版，art表示较短篇幅的文章，rep表示中篇的报告，book表示长篇的著作，俺写实验报告用个art或者rep就行了。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">usepackage</span><span class="hljs-string">{amsmath}</span></span><span class="hljs-comment">%宏包，要使用的各种命令通常都包含在其中。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{document}</span></span><span class="hljs-comment">%文档的开头</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">title</span><span class="hljs-string">{利用单摆测量重力加速度}</span></span><span class="hljs-comment">%文章的标题</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">author</span><span class="hljs-string">{nzj}</span></span><span class="hljs-comment">%作者姓名</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">date</span><span class="hljs-string">{\today}</span></span>
+</div><div class="hljs-line"><span class="hljs-comment">%文章日期，\today命令表示显示今天日期。\date本质上并没有显示日期的功能，其作用只是在此处另起一行居中显示花括号内的文字（不信你在花括号里面随便写点什么，都可以编译通过）。中文环境下默认格式为“2020年3月1日”。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">maketitle</span></span> 
+</div><div class="hljs-line"><span class="hljs-comment">%生成标题命令。没有这个命令前面的\title、\author、\date都不会被编译并显示在文本上，并且不会报错。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">tableofcontents</span></span> <span class="hljs-comment">%生成目录</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">section</span><span class="hljs-string">{实验名称}</span></span><span class="hljs-comment">%section表示小节。</span>
+</div><div class="hljs-line">利用单摆和手机软件测量当地的重力加速度。<span class="hljs-comment">%正文内容。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">section</span><span class="hljs-string">{实验原理}</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">subsection</span><span class="hljs-string">{小摆角}</span></span> <span class="hljs-comment">%在section下面的“小小节”可以用\subsection和\subsubsection，二者均会显示在目录中。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">subsubsection</span><span class="hljs-string">{不会做}</span></span>
+</div><div class="hljs-line">这个实验好难 <span class="hljs-comment">%直接回车没有任何效果。</span>
+</div><div class="hljs-line">我不会做 <span class="hljs-tag">\<span class="hljs-name">\</span></span> <span class="hljs-comment">%用两个双斜杠“\\”来直接换行。</span>
+</div><div class="hljs-line">看来俺是要退学了
+</div><div class="hljs-line"><wbr>
+</div><div class="hljs-line">怎么办啊<span class="hljs-comment">%空一行可以另起一段（与双斜杠的区别在于会按中文排版规范空两格并于前一段之间间隔一个空行</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">paragraph</span><span class="hljs-string">{论退学的方法}</span></span>直接回家即可 <span class="hljs-comment">%\paragraph{}命令也可以另起一段，并且花括号中的内容会粗体显示，但不会显示在目录里面。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{document}</span></span><span class="hljs-comment">%文档的结束</span>
+</div></code></pre>
+
+<p>注意，在使用TeX软件时，建立的.tex文件及目录最好不要包含中文字符，否则很可能会报错。</p>
+
+<p>上面的代码编译之后的效果如下图所示：</p>
+
+<p><img src="1.png" alt="示例图片1" class="" style="margin: auto; display: block; text-align: center;"></p>
+
+<h2 id="公式">公式</h2>
+
+<p>科技论文中常常会有许多公式，LaTeX正是为此而生的。 <br>
+需要注意的是，<strong>LaTeX中使用公式时需要使用\usepackage{amsmath}宏包</strong>，否则可能无法编译一些数学符号，记得将其添加在代码前面哦~</p>
+
+
+
+<h3 id="表示方法">表示方法</h3>
+
+<p>在LaTeX中，公式有以下三种表达方法：</p>
+
+
+
+<h4 id="行内公式">行内公式</h4>
+
+<p>行内公式的意思是不会换行，跟前后的文字一样显示。使用方法是用一对“$”将要显示的公式内容包住，如下所示：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs gams"><div class="hljs-line">笛卡尔发现的心形线的方程为<span class="hljs-symbol">$</span> r = a (<span class="hljs-number">1</span> + \<span class="hljs-built-in">sin</span> \theta ) <span class="hljs-symbol">$</span> <span class="hljs-comment">//在数学公式中，运算符号均应使用正体，故不能直接输入"sin"而应输入"\sin"。</span>
+</div></code></pre>
+
+<p>其显示效果为</p>
+<p><img src="2.png" alt="示例图片2" class="" style="margin: auto; display: block; text-align: center;"></p>
+
+
+
+<h4 id="行间公式">行间公式</h4>
+
+<p>行间公式的意思是会另起一行，并居中书写公式，无论在代码中位置如何，公式均会单独占一行。使用方法是用一对”$$”将要显示的公式内容包住，如下所示：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs gams"><div class="hljs-line">笛卡尔发现的心形线的方程为<span class="hljs-symbol">$</span><span class="hljs-symbol">$</span>r = a ( <span class="hljs-number">1</span> - \<span class="hljs-built-in">sin</span> \theta ) <span class="hljs-symbol">$</span><span class="hljs-symbol">$</span>心形线的正式名称是在<span class="hljs-number">17</span>世纪时发表的.
+</div></code></pre>
+
+<p>显示效果为：</p>
+
+<p><img src="3.png" alt="示例图片3" class="" style="margin: auto; display: block; text-align: center;"></p>
+
+<strong>注意</strong>：行间公式虽然会导致文本换行，但是后面的文本并不是另起一段，从上图中文本的缩进也可以看出来这一点。</p>
+
+
+
+<h4 id="公式环境">公式环境</h4>
+
+<p>LaTeX中最常用的还是使用公式环境，利用标签”\begin {equation}”和”\end {equation}”，在公式环境中，可以方便地设置引用标签便于后续引用。其显示效果与行间公式相同。使用的具体形式如下：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line">笛卡尔发现的心形线的方程为
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{equation}</span></span><span class="hljs-tag">\<span class="hljs-name">label</span><span class="hljs-string">{eq1}</span></span>
+</div><div class="hljs-line"><span class="hljs-comment">%\label命令就是引用标签，其具体使用方式会在后面提到。</span>
+</div><div class="hljs-line">r = a ( 1 - <span class="hljs-tag">\<span class="hljs-name">sin</span></span> <span class="hljs-tag">\<span class="hljs-name">theta</span></span> )
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{equation}</span></span>
+</div><div class="hljs-line">心形线的正式名称是在17世纪时发表的.
+</div></code></pre>
+
+<p>显示效果如下：</p>
+
+<div><div style="display: block; margin: auto; text-align: center; color: grey" class="image-wrap" alt=""><img longdesc="./1586502270660.png" alt="@注意到没有？公式后面已经有了编号(1)！ | center " title="" type="image/png" src="4.png" class=""><p class="image-caption" style="text-align: center;">注意到没有？公式后面已经有了编号(1)！</p></div></div>
+
+<p></p>
+<p>当然，这个编号与你前面在\label命令里面写的内容没有任何关系，程序会自动帮你编号，而\label里面写的内容只是用来引用的名称。具体的内容参见“<a href="#引用">引用</a>”</p>
+
+<h3 id="相关代码">相关代码</h3>
+
+<p>在写公式的时候，会有许多符号的代码需要记忆，这里给出几个页面以供查阅：</p>
+
+<p><a href="https://www.zybuluo.com/codeep/note/163962" target="_blank">Markdown/Latex代码速查</a><font size="2" color="grey">(Markdown与LaTeX的符号代码通用，这些符号同时还被Html兼容，所以学Html的时候这些也可以用上。这个网站经常会打不开，后面会附上PDF的链接)</font></p>
+
+<!-- <p><a href="http://home.ustc.edu.cn/~ustc_nzj1001/latex/websitecollector.html" target="_blank">这里</a>还有一些其他的代码集合，比较杂乱，就不一一列举在这里了</p> -->
+
+
+
+<h2 id="表格">表格</h2>
+
+
+
+<h3 id="普通表格">普通表格</h3>
+
+<p>普通表格的一般代码如下：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{table}</span><span class="hljs-string">[h]</span></span><span class="hljs-comment">%表格环境开始</span>
+</div><div class="hljs-line"><span class="hljs-comment">%『h』当前位置。将图形放置在正文文本中给出该图形环境的地方。如果本页所剩的页面不够，这一参数将不起作用。『t』顶部。将图形放置在页面的顶部。『b』底部。将图形放置在页面的底部。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">centering</span></span> <span class="hljs-comment">%表格居中</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">caption</span><span class="hljs-string">{基础实验测量数据}</span></span> <span class="hljs-comment">%表格标题，使用\caption命令时程序同样会为表格自动编号</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{tabular}</span><span class="hljs-string">{c|r l|c}</span></span> <span class="hljs-comment">%开始绘制表。c表示该列元素居中，l表示居左，r表示居右，中间的竖线|表示此处有竖直边框。</span>
+</div><div class="hljs-line">测量次数 &amp; 摆长l/m &amp; 周期数n &amp; 总时间t/s   <span class="hljs-tag">\<span class="hljs-name">\</span></span>  <span class="hljs-tag">\<span class="hljs-name">hline</span></span><span class="hljs-comment">%单元格之间以&amp;分开，\hline 表示此行下面有水平边框。</span>
+</div><div class="hljs-line">1 &amp; 1.125 &amp; 20 &amp; 42.03   <span class="hljs-tag">\<span class="hljs-name">\</span></span> <span class="hljs-comment">%双斜杠换行</span>
+</div><div class="hljs-line">2 &amp; 1.090 &amp; 20 &amp; 41.84   <span class="hljs-tag">\<span class="hljs-name">\</span></span>
+</div><div class="hljs-line">3 &amp; 1.025 &amp; 20 &amp; 40.34   <span class="hljs-tag">\<span class="hljs-name">\</span></span> <span class="hljs-tag">\<span class="hljs-name">hline</span></span> 
+</div><div class="hljs-line">平均 &amp; 1.080 &amp; 20 &amp; 41.40 <span class="hljs-tag">\<span class="hljs-name">\</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{tabular}</span></span><span class="hljs-comment">%表格绘制完毕</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{table}</span></span><span class="hljs-comment">%表格环境结束</span>
+</div></code></pre>
+
+<p>上面表格的显示效果如下：</p>
+
+
+
+<p><img longdesc="./1586504532085.png" alt="Alt text" title="" type="image/png" src="5.png" class="" style="margin: auto; display: block; text-align: center;"> <br>
+注：有时表格较长，会超出该页面，此时h命令失效，会导致表格的位置移动。此时若要强制要求表格乖乖呆在原来的地方，则需要使用\usepackage{float}宏包并在表格位置参数中使用大写H参数，即</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{table}</span><span class="hljs-string">[H]</span></span>
+</div></code></pre>
+
+
+
+<h3 id="长表格">长表格</h3>
+
+<p>当需要的表格非常长（超出了一页）时，此时如果仍然使用普通表格代码时就会出现问题（不会报错），如下图所示：</p>
+
+
+
+<div><div style="display: block; margin: auto; text-align: center; color: grey ;" class="image-wrap" alt="" ><img longdesc="./1586505214833.png" alt="@下方表格没有显示完整| center | 500*0" title="" type="image/png" src="6.png" class="" width="500"><p class="image-caption" style="text-align: center;">下方表格没有显示完整</p></div> <br>
+此时就需要动用\usepackage{longtable}宏包，表格环境也变为\begin{longtable}，具体代码如下：</div>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs lsl"><div class="hljs-line">\begin{center}%居中环境
+</div><div class="hljs-line">\begin{longtable}{cc|cc|cc}%长表格开始
+</div><div class="hljs-line">    \caption{高阶实验Tracker导出数据}
+</div><div class="hljs-line">t/s &amp; x/m &amp; t/s &amp; x/m &amp; t/s &amp; x/m \\ \hline
+</div><div class="hljs-line"><span class="hljs-number">1.5</span> &amp; <span class="hljs-number">0.200747</span> &amp; <span class="hljs-number">3.944444</span> &amp; <span class="hljs-number">0.135919</span> &amp; <span class="hljs-number">6.388889</span> &amp; <span class="hljs-number">-0.16002</span> \\ \hline
+</div><div class="hljs-line"><span class="hljs-number">1.555556</span> &amp; <span class="hljs-number">0.214805</span> &amp; <span class="hljs-number">4</span> &amp; <span class="hljs-number">0.097978</span> &amp; <span class="hljs-number">6.444444</span> &amp; <span class="hljs-number">-0.23503</span> \\ \hline
+</div><div class="hljs-line"><span class="hljs-number">1.611111</span> &amp; <span class="hljs-number">0.221288</span> &amp; <span class="hljs-number">4.055556</span> &amp; <span class="hljs-number">0.056287</span> &amp; <span class="hljs-number">6.5</span> &amp; <span class="hljs-number">-0.2905</span> \\ \hline
+</div><div class="hljs-line"><span class="hljs-number">1.666667</span> &amp; <span class="hljs-number">0.21598</span> &amp; <span class="hljs-number">4.111111</span> &amp; <span class="hljs-number">-0.00922</span> &amp; <span class="hljs-number">6.555556</span> &amp; <span class="hljs-number">-0.34398</span> \\ \hline
+</div><div class="hljs-line"><span class="hljs-number">1.722222</span> &amp; <span class="hljs-number">0.201832</span> &amp; <span class="hljs-number">4.166667</span> &amp; <span class="hljs-number">-0.06365</span> &amp; <span class="hljs-number">6.611111</span> &amp; <span class="hljs-number">-0.40928</span> \\ \hline
+</div><div class="hljs-line">%后面还有许多，此处略去。
+</div><div class="hljs-line">\end{longtable}
+</div><div class="hljs-line">\end{center}
+</div></code></pre>
+
+<p>效果如下：</p>
+
+
+
+<div><div style="display: block; margin: auto; text-align: center;" class="image-wrap" alt=""><img longdesc="./1586506026685.png" alt="@此时表格已经自动分为两页 | center | 500*0 " title="" type="image/png" src="7.png" class="" width="500"><p class="image-caption" style="text-align: center;">此时表格已经自动分为两页</p></div></div>
+
+
+
+<h3 id="表格必杀技">表格必杀技</h3>
+
+<p>估计你看到这个长表格的时候会有这种想法：这么长一个表格一个个字手打怕不是要打到明年去？ <br>
+这里就介绍一个表格必杀技网站： <br>
+<a href="https://www.tablesgenerator.com/" target="_blank">https://www.tablesgenerator.com/</a> <br>
+在Excel中把表格拟好，就可以直接复制进这个网页，具体的操作方法参见<a href="http://home.ustc.edu.cn/~ustc_nzj1001/media/1.mp4" target="_blank">这个视频</a></p>
+
+
+
+<h2 id="图片">图片</h2>
+
+
+<p>插入图片需要使用\usepackage{graphicx}宏包。</p>
+<h3 id="插入方法">插入方法</h3>
+
+<p>图片的插入代码如下：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{figure}</span><span class="hljs-string">[H]</span></span><span class="hljs-comment">%这个H与表格中的含义一样，表格中的代码也可以用在此处</span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">centering</span></span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">includegraphics</span><span class="hljs-string">[width=1\textwidth]</span><span class="hljs-string">{图片.png}</span></span><span class="hljs-comment">%数字代表占页面大小的比值，1代表充满页面，也可以自行调整数字来调整图片大小。</span>
+</div><div class="hljs-line">    <span class="hljs-comment">%只有当图片文件与文档.tex文件处在同一目录下时才能如此直接插入图片。</span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">caption</span><span class="hljs-string">{心形线的图像}</span></span> <span class="hljs-comment">%标题，同样会自动编号。</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{figure}</span></span>
+</div></code></pre>
+
+<p>效果如下：</p>
+
+
+
+<p><img longdesc="./1586522586298.png" alt="Alt text" title="" type="image/png" src="8.png" class="" style="margin: auto; display: block; text-align: center;"></p>
+
+<h2 id="引用"><span id="引用">引用</span></h2>
+
+<p>在写作时，常常会遇到引用的问题，比如“由式(1)可知”、“在图(3)中可以看出”······ <br>
+通过\label 标签即可进行这样的引用，\label标签适用于图片、表格、公式等，具体使用方法如下：</p>
+
+
+
+<h3 id="图片和表格的引用">图片和表格的引用</h3>
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{figure}</span><span class="hljs-string">[H]</span></span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">centering</span></span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">includegraphics</span><span class="hljs-string">[width=1\textwidth]</span><span class="hljs-string">{1.png}</span></span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">caption</span><span class="hljs-string">{心形线的图像}</span></span> 
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">label</span><span class="hljs-string">{p1}</span></span> <span class="hljs-comment">%\label后面的花括号内写上你的记号</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{figure}</span></span>
+</div><div class="hljs-line"><wbr>
+</div><div class="hljs-line">如图<span class="hljs-tag">\<span class="hljs-name">ref</span><span class="hljs-string">{p1}</span></span>所示 <span class="hljs-comment">%\ref后面的花括号中写上要引用的对象的记号。</span>
+</div></code></pre>
+
+<p>效果如下：</p>
+
+<p><img longdesc="./1586522799878.png" alt="Alt text" title="" type="image/png" src="9.png" class="" width="500" style="margin: auto; display: block; text-align: center;"> <br>
+表格引用的方法类似，代码如下，具体效果就略去不表了<font size="2" color="grey">（懒</font></p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{table}</span><span class="hljs-string">[h]</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">centering</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">caption</span><span class="hljs-string">{基础实验测量数据}</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{tabular}</span><span class="hljs-string">{c|c|c|c}</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">label</span><span class="hljs-string">{t2}</span></span> <span class="hljs-comment">%与图片引用基本相同</span>
+</div><div class="hljs-line"><span class="hljs-comment">%表格具体内容略去</span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{tabular}</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{table}</span></span>
+</div></code></pre>
+
+<p><strong>注意</strong>：长表格在添加引用标签时，要在表格具体内容的前一行的末尾加上一个双斜杠，否则会报错，具体原因尚不明确。如下所示：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{longtable}</span><span class="hljs-string">{cc|cc|cc}</span></span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">caption</span><span class="hljs-string">{高阶实验Tracker导出数据}</span></span>
+</div><div class="hljs-line">    <span class="hljs-tag">\<span class="hljs-name">label</span><span class="hljs-string">{t-2}</span></span> <span class="hljs-tag">\<span class="hljs-name">\</span></span> <span class="hljs-comment">%添加双斜杠</span>
+</div><div class="hljs-line">t/s &amp; x/m &amp; t/s &amp; x/m &amp; t/s &amp; x/m <span class="hljs-tag">\<span class="hljs-name">\</span></span> <span class="hljs-tag">\<span class="hljs-name">hline</span></span>
+</div><div class="hljs-line">1.5 &amp; 0.200747 &amp; 3.944444 &amp; 0.135919 &amp; 6.388889 &amp; -0.16002 <span class="hljs-tag">\<span class="hljs-name">\</span></span> 
+</div><div class="hljs-line"><span class="hljs-comment">%后略</span>
+</div></code></pre>
+
+<h3 id="方程的引用">方程的引用</h3>
+
+<p>方程的引用其实也与图表的引用方法类似，如下所示：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{equation}</span></span>
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">label</span><span class="hljs-string">{eq1}</span></span><span class="hljs-comment">%引用标签</span>
+</div><div class="hljs-line">r = a ( 1 - <span class="hljs-tag">\<span class="hljs-name">sin</span></span> <span class="hljs-tag">\<span class="hljs-name">theta</span></span> )
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{equation}</span></span>
+</div></code></pre>
+
+<p>但是，方程的引用通常是带括号的，这时就要用上\eqref命令，如下所示：</p>
+
+
+
+<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{equation}</span></span><span class="hljs-tag">\<span class="hljs-name">label</span><span class="hljs-string">{eq1}</span></span>
+</div><div class="hljs-line"><span class="hljs-comment">%\label命令就是引用标签，其具体使用方式会在后面提到。</span>
+</div><div class="hljs-line">r = a ( 1 - <span class="hljs-tag">\<span class="hljs-name">sin</span></span> <span class="hljs-tag">\<span class="hljs-name">theta</span></span> )
+</div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">end</span><span class="hljs-string">{equation}</span></span>
+</div><div class="hljs-line">方程<span class="hljs-tag">\<span class="hljs-name">eqref</span><span class="hljs-string">{eq1}</span></span>是心形线的一种形式。
+</div></code></pre>
+
+<p>效果如下：</p>
+
+
+
+<p><img longdesc="./1586523948864.png" alt="Alt text" title="" type="image/png" src="10.png" class="" style="margin: auto; display: block; text-align: center;"></p>
+
+<h2 id="其他问题">其他问题</h2>
+
+
+
+<h3 id="半角标点">半角标点</h3>
+
+<p>由于在科技文献中常常要求使用半角的标点，而平常输入汉字时通常使用的都是全角标点，来回切换非常麻烦。此时可以利用TeX Work软件（VS Code 同理）自带的替换功能，将全角标点替换为半角标点。</p>
+
+
+
+<p><img longdesc="./1586524107116.png" alt="Alt text" title="" type="image/png" src="11.png" class="" style="margin: auto; display: block; text-align: center;"></p>
+
+<h3 id="错误识别">错误识别</h3>
+
+<p>此处列举几个目前俺见到的几种错误：</p>
+
+
+
+<h4 id="undefined-control-sequence">Undefined control sequence</h4>
+
+
+
+<div><div style="display: block; margin: auto; text-align: center;" class="image-wrap" alt=""><img longdesc="./1586524190721.png" alt="@图中的“l.4”是指语句的编号，4代表第四行（包括注释行） | center " title="" type="image/png" src="12.png" class=""><p class="image-caption" style="text-align: center;">图中的“l.4”是指语句的编号，4代表第四行（包括注释行）</p></div> <br>
+此时注意看报错的具体语句：</div>
+
+<p>当出现\documentclass语句时，通常是排版方式不对，建议检查排版方式是否正确，通常中文排版应当采用XeLaTeX排版（在“编辑-首选项-排版”中可以更改默认排版方式）；</p>
+
+<p>当出现其他语句时，通常的原因有两种，一是语句的单词拼错了；二是语句对应的宏包忘记加载了。检查一下即可。</p>
+
+
+
+<h4 id="not-in-outer-par-mode">Not in outer par mode</h4>
+
+<p>出现这种错误可能是有对应标签缺失，比如少了一个\end{table}等等，并且这种报错时提示的语句通常不是缺失的那一句，故此时要在提示的语句附近寻找（一般在上面）</p>
+
+
+
+<h2 id="设置问题">设置问题</h2>
+
+<p>在“编辑-首选项”中可以进行许多设置，比如在“编辑器”中就可以设置显示行号方便查找错误等等； <br>
+在“格式-字体”还可以调整界面的默认字体和字号（注意不是排版的文档的字体和字号）。默认的字体很小还很丑，不妨更换一个自己更喜欢的字体。</p></div></body></html>
