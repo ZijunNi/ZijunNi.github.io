@@ -1,67 +1,116 @@
 <!DOCTYPE html>
-<html lang="zh">	
-	<head>
-		<meta charset="utf-8" />
-		<title>��ҳ Home</title>
-		<link href='https://cdn.maxiang.io/res-min/themes/marxico.css' rel='stylesheet'>
-		<style>.note-content , .note-content  div {font-size: 20px;}
-		
-		.note-content  {font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;}
-		body {background-color: #FAEBD7}
-		h1 {font-family:KaiTi_GB2312, Georgia;}
-		body {font-family: Georgia;}
-		body {
-		padding-top: 5%;
-		padding-right: 20%;
-		padding-left: 20%;
-		padding-bottom: 20%;
-		}
-		h2 {
-		padding-left: 1%;
-		font-family:KaiTi_GB2312, Georgia;
-		}
-		h3 {
-		padding-left: 2%;
-		font-family:KaiTi_GB2312, Georgia;
-		}
-		h4 {
-		padding-left: 3%;
-		font-family:KaiTi_GB2312, Georgia;
-		}
-		
-		.note-content  {color: black;}
-		</style>
-	</head>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>主页 Home</title>
+    <link href='css/styles.css' rel='stylesheet'>
+    <style>
+        body {
+            background-color: #f8f9fa; /* 使用 Bootstrap 的背景色 */
+            font-family: var(--bs-body-font-family); /* 使用 Bootstrap 的默认字体 */
+            padding: 2rem; /* 调整内边距 */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--bs-body-font-family); /* 使用 Bootstrap 的默认字体 */
+            margin-bottom: 1rem; /* 添加标题间距 */
+        }
+
+        h1 {
+            font-size: calc(1.375rem + 1.5vw); /* 使用 Bootstrap 的响应式标题大小 */
+            font-weight: 500; /* 标题加粗 */
+        }
+
+        h2 {
+            font-size: calc(1.325rem + 0.9vw); /* 使用 Bootstrap 的响应式标题大小 */
+            padding-left: 1%;
+        }
+
+        h3 {
+            font-size: calc(1.3rem + 0.6vw); /* 使用 Bootstrap 的响应式标题大小 */
+            padding-left: 2%;
+        }
+
+        h4 {
+            font-size: calc(1.275rem + 0.3vw); /* 使用 Bootstrap 的响应式标题大小 */
+            padding-left: 3%;
+        }
+
+        .note-content, .note-content div {
+            font-size: 1rem; /* 使用 Bootstrap 的默认字体大小 */
+            color: var(--bs-body-color); /* 使用 Bootstrap 的默认文本颜色 */
+        }
+
+        nav ul {
+            list-style: none; /* 移除列表样式 */
+            padding-left: 0; /* 移除默认内边距 */
+            display: flex; /* 水平排列导航项 */
+            gap: 1rem; /* 导航项之间的间距 */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* 移除链接下划线 */
+            color: var(--bs-link-color); /* 使用 Bootstrap 的链接颜色 */
+        }
+
+        nav ul li a:hover {
+            color: var(--bs-link-hover-color); /* 使用 Bootstrap 的链接悬停颜色 */
+        }
+
+        footer {
+            margin-top: 2rem; /* 页脚上边距 */
+            text-align: center; /* 页脚文本居中 */
+            color: var(--bs-secondary-color); /* 使用 Bootstrap 的次要文本颜色 */
+        }
+    </style>
+</head>
 <body>
-	<header>
-		<h1>��ӭ����nzj�ĸ�����ҳ</h1>
-	</header>
-	<nav>
-		<ul>
-			<li><a href="#about">���˼��</a></li>
-			<li><a href="#skills">��ʷ��������</a></li>
-			<li><a href="#contact">��ϵ��ʽ</a></li>
-		</ul>
+
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="#!">倪子珺 Ni Zijun</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="homepage.html">个人博客 Personal Blog</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">学术 Academics</a></li>
+					<li class="nav-item"><a class="nav-link" href="latex/latex_codes.html">工具 Tools</a></li>
+					<li class="nav-item"><a class="nav-link" href="#!">联系方式 Contact</a></li>
+				</ul>
+			</div>
+		</div>
 	</nav>
-	<section id="about">
-		<h2>���˼��</h2>
-		<p>��</p>
-	</section>
-	<section id="skills">
-		<h2>��ʷ��������</h2>
-		<ul>
-			<a href="latex/latex1/latex.html">Latex��ѧ�ּ�</a>
-		</ul>
-	</section>
-	<section id="contact">
-		<h2>��ϵ��ʽ</h2>
-		<ul>
-			<li>���䣺nizijun@stu.pku.edu.cn, ustc_nzj1001@mail.ustc.edu.cn</li>
-			<li>�绰�� +86 13907292019</li>
-		</ul>
-	</section>
-	<footer>
-		<p>��Ȩ���� &copy;2023-nzj</p>
-	</footer>
+	
+    <header>
+        <h1 class="text-center">欢迎来到 nzj 的个人主页</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#about">个人简介</a></li>
+            <li><a href="#skills">历史发表内容</a></li>
+            <li><a href="#contact">联系方式</a></li>
+        </ul>
+    </nav>
+    <section id="about">
+        <h2>个人简介</h2>
+        <p>略</p>
+    </section>
+    <section id="skills">
+        <h2>历史发表内容</h2>
+        <ul>
+            <li><a href="latex/latex1/latex.html">Latex 初学手记</a></li>
+        </ul>
+    </section>
+    <section id="contact">
+        <h2>联系方式</h2>
+        <ul>
+            <li>邮箱：nizijun@stu.pku.edu.cn, ustc_nzj1001@mail.ustc.edu.cn</li>
+            <li>电话：+86 13907292019</li>
+        </ul>
+    </section>
+    <footer>
+        <p>版权所有 &copy; 2023 - nzj</p>
+    </footer>
 </body>
 </html>
