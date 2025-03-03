@@ -3,7 +3,7 @@
 <head>
 <title>LaTeX初学手记</title>
 <meta charset='utf-8'>
-<link href='https://cdn.maxiang.io/res-min/themes/marxico.css' rel='stylesheet'>
+<link href='css/styles.css' rel='stylesheet'>
 <style>.note-content , .note-content  div {font-size: 20px;}
 
 .note-content  {font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;}
@@ -33,6 +33,25 @@ font-family:KaiTi_GB2312，Georgia;
 </style>
 </head>
 <body>
+
+	<!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">倪子珺 Ni Zijun</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="homepage.html">个人博客 Personal Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">学术 Academics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="latex/latex_codes.html">工具 Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">联系方式 Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
 <div id='preview-contents' class='note-content'>
                         
                     
@@ -89,14 +108,16 @@ LaTeX自带的TexWork编译器比较难看也比较难用，<a href="https://zhu
 
 
 
+<h2 id="下载">下载</h2>
+<p>下载地址<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso" target="_blank">清华镜像</a>和<a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/" target="_blank">中国科大镜像（下载texliveYYYY.iso或者texlive.iso均可）</a></p>
+
 <h2 id="入门">入门</h2>
 
-<p>下载地址<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso" target="_blank">清华镜像</a>和<a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/" target="_blank">中国科大镜像（下载texliveYYYY.iso或者texlive.iso均可）</a></p>
 <p>废话不多说<font size = "2" color = "grey">（要不是字丑我何必去学这玩意。。。）</font>，先看LaTex文档的基本结构吧：</p>
 
 
 
-<pre class="prettyprint with-line-number hljs-dark"><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">documentclass</span><span class="hljs-string">{ctexart}</span></span><span class="hljs-comment">%这里说明了文档的排版格式，ctex表示是中文排版，art表示较短篇幅的文章，rep表示中篇的报告，book表示长篇的著作，俺写实验报告用个art或者rep就行了。</span>
+<pre><code class="hljs tex"><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">documentclass</span><span class="hljs-string">{ctexart}</span></span><span class="hljs-comment">%这里说明了文档的排版格式，ctex表示是中文排版，art表示较短篇幅的文章，rep表示中篇的报告，book表示长篇的著作，俺写实验报告用个art或者rep就行了。</span>
 </div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">usepackage</span><span class="hljs-string">{amsmath}</span></span><span class="hljs-comment">%宏包，要使用的各种命令通常都包含在其中。</span>
 </div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">begin</span><span class="hljs-string">{document}</span></span><span class="hljs-comment">%文档的开头</span>
 </div><div class="hljs-line"><span class="hljs-tag">\<span class="hljs-name">title</span><span class="hljs-string">{利用单摆测量重力加速度}</span></span><span class="hljs-comment">%文章的标题</span>
@@ -129,7 +150,7 @@ LaTeX自带的TexWork编译器比较难看也比较难用，<a href="https://zhu
 <h2 id="公式">公式</h2>
 
 <p>科技论文中常常会有许多公式，LaTeX正是为此而生的。 <br>
-需要注意的是，<strong>LaTeX中使用公式时需要使用\usepackage{amsmath}宏包</strong>，否则可能无法编译一些数学符号，记得将其添加在代码前面哦~</p>
+需要注意的是，<strong>LaTeX中使用公式时需要使用<code>\usepackage{amsmath}</code>宏包</strong>，否则可能无法编译一些数学符号，记得将其添加在代码前面哦~</p>
 
 
 
@@ -422,4 +443,12 @@ LaTeX自带的TexWork编译器比较难看也比较难用，<a href="https://zhu
 <h2 id="设置问题">设置问题</h2>
 
 <p>在“编辑-首选项”中可以进行许多设置，比如在“编辑器”中就可以设置显示行号方便查找错误等等； <br>
-在“格式-字体”还可以调整界面的默认字体和字号（注意不是排版的文档的字体和字号）。默认的字体很小还很丑，不妨更换一个自己更喜欢的字体。</p></div></body></html>
+在“格式-字体”还可以调整界面的默认字体和字号（注意不是排版的文档的字体和字号）。默认的字体很小还很丑，不妨更换一个自己更喜欢的字体。</p></div>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+
+</body>
+</html>

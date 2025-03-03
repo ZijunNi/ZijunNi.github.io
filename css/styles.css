@@ -10849,3 +10849,58 @@ body.home-page {
 body.blog-page {
   background-color: #FAEBD7; /* 使用纯色背景 */
 }
+
+/* 以下两个类是用与实现图片轮播效果 */
+.background-carousel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 确保背景在内容下方 */
+  background-size: cover;
+  background-position: center;
+  opacity: 0; /* 初始透明 */
+  transition: opacity 1s ease-in-out; /* 淡入淡出效果 */
+}
+
+/* 显示当前背景图 */
+.background-carousel.active {
+  opacity: 1;
+}
+
+/* 文字说明容器 */
+.caption-container {
+  position: fixed;
+  margin-top: 3rem;
+  width: 100%;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  z-index: 1; /* 确保文字在背景上方 */
+  opacity: 0; /* 初始透明 */
+  transition: opacity 1s ease-in-out;
+}
+
+/* 显示文字 */
+.caption-container.active {
+  opacity: 1;
+}
+
+/* 文字阴影增强可读性 */
+.caption-title, .caption-description {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* 标题样式 */
+.chinese_title {
+  margin-top: 3rem ;
+}
+
+.english_title {
+  margin-top: 0 ;
+}
+
+/* 描述样式 */
+.pic_date {
+  margin: 0 auto;
+}
