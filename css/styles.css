@@ -10839,7 +10839,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body {
+/* 主页背景 */
+body.home-page {
   background: url('../assets/main_pic.png') no-repeat center center fixed;
   background-size: cover;
+}
+
+/* 博客页面背景 */
+body.blog-page {
+  background-color: #FAEBD7; /* 使用纯色背景 */
 }
