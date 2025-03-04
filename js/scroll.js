@@ -27,9 +27,14 @@ const backgroundData = [
         image: './assets/images/background/bg5.jpeg',
         chinese_title: '柏林 · 苏军纪念碑',
         english_title: 'Sowjetisches Ehrenmal, Berlin, Deutschland<br/>Soviet War Memorial, Berlin, Germany',
-        pic_date: '摄于2024年11月15日 Pictured at Dec. 3rd, 2024'
+        pic_date: '摄于2024年11月16日 Pictured at Nov. 16th, 2024'
+    },   
+    {
+        image: './assets/images/background/bg6.jpg',
+        chinese_title: '柏林 · 奥伯鲍姆桥',
+        english_title: '<span style="font-size:80%;">Oberbaumbrüke, Berlin, Deutschland<br/>Oberbaum Bridge, Berlin, Germany</span>',
+        pic_date: '<span style="font-size:90%;">摄于2024年11月16日 Pictured at Nov. 16th, 2024</span>'
     },    
-    
 ];
 
 function preloadImages() {
