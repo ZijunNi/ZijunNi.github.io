@@ -13,8 +13,14 @@ const backgroundData = [
     },
     {
         image: './assets/images/background/bg3.png',
-        chinese_title: '富锦 · 锦山（别拉音子山）',
-        english_title: 'Jinshan Hill (Bielayin Hill), Fujin, China',
+        chinese_title: '富锦 · 锦山 <span style="font-size:0.5em">（别拉音子山）</span>',
+        english_title: 'Jinshan Hill <span style="font-size:0.5em">(Bielayin Hill)</span>, Fujin, China',
+        pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
+    },
+    {
+        image: './assets/images/background/bg4.png',
+        chinese_title: '延庆 · 野鸭湖国家湿地公园',
+        english_title: 'Yeyahu National Wetland Park, Yanqing, China',
         pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
     },
 ];
