@@ -1,24 +1,24 @@
 const backgroundData = [
     {
-        image: './assets/images/background/bg1.png',
+        image: './assets/images/background/bg1.jpg',
         chinese_title: '富锦 · 001乡道',
         english_title: 'Village Road 001, Fujin, China',
         pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
     },
     {
-        image: './assets/images/background/bg2.png',
+        image: './assets/images/background/bg2.jpg',
         chinese_title: '抚远 · 东极广场',
         english_title: 'East Polar Plaza, Fuyuan, China',
         pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
     },
     {
-        image: './assets/images/background/bg3.png',
+        image: './assets/images/background/bg3.jpg',
         chinese_title: '富锦 · 锦山 <span style="font-size:0.5em">（别拉音子山）</span>',
         english_title: 'Jinshan Hill <span style="font-size:0.5em">(Bielayin Hill)</span>, Fujin, China',
         pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
     },
     {
-        image: './assets/images/background/bg4.png',
+        image: './assets/images/background/bg4.jpg',
         chinese_title: '延庆 · 野鸭湖国家湿地公园',
         english_title: 'Yeyahu National Wetland Park, Yanqing, China',
         pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
