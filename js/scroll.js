@@ -21,7 +21,7 @@ const backgroundData = [
         image: './assets/images/background/bg4.jpg',
         chinese_title: '延庆 · 野鸭湖国家湿地公园',
         english_title: 'Yeyahu National Wetland Park, Yanqing, China',
-        pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
+        pic_date: '摄于2024年12月3日 Pictured at Dec. 3rd, 2024'
     },
 ];
 
