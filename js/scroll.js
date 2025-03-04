@@ -1,14 +1,14 @@
 const backgroundData = [
     {
-        image: './assets/images/background/bg1.jpg',
-        chinese_title: '富锦 · 001乡道',
-        english_title: 'Village Road 001, Fujin, China',
-        pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
-    },
-    {
         image: './assets/images/background/bg2.jpg',
         chinese_title: '抚远 · 东极广场',
         english_title: 'East Polar Plaza, Fuyuan, China',
+        pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
+    },
+    {
+        image: './assets/images/background/bg1.jpg',
+        chinese_title: '富锦 · 001乡道',
+        english_title: 'Village Road 001, Fujin, China',
         pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
     },
     {
@@ -23,6 +23,13 @@ const backgroundData = [
         english_title: 'Yeyahu National Wetland Park, Yanqing, China',
         pic_date: '摄于2024年12月3日 Pictured at Dec. 3rd, 2024'
     },
+    {
+        image: './assets/images/background/bg5.jpeg',
+        chinese_title: '柏林 · 苏军纪念碑',
+        english_title: 'Sowjetisches Ehrenmal, Berlin, Deutschland<br/>Soviet War Memorial, Berlin, Germany',
+        pic_date: '摄于2024年11月15日 Pictured at Dec. 3rd, 2024'
+    },    
+    
 ];
 
 function preloadImages() {
