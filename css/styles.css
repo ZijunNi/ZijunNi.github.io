@@ -10872,7 +10872,7 @@ body.blog-page {
 /* 文字说明容器 */
 .caption-container {
   position: fixed;
-  margin-top: 3rem;
+  margin-top: 1rem;
   width: 100%;
   /* left: 50%; */
   /* transform: translate(-50%, -50%); */
