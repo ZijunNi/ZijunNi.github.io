@@ -35,6 +35,14 @@ const backgroundData = [
         english_title: '<span style="font-size:80%;">Oberbaumbrüke, Berlin, Deutschland<br/>Oberbaum Bridge, Berlin, Germany</span>',
         pic_date: '<span style="font-size:90%;">摄于2024年11月16日 Pictured at Nov. 16th, 2024</span>'
     },    
+    
+    // 暗色图片专用样式
+    {
+        image: './assets/images/background/bg7.jpg',
+        chinese_title: '<span style="color: var(--bs-gray-400);">南昌 · 赣江两岸</span>',
+        english_title: '<span style="color: var(--bs-gray-400);">Two Sides of the Ganjiang river</span>',
+        pic_date: '<span style="color: var(--bs-gray-400);">摄于2025年2月5日 Pictured at Feb. 5th, 2025</span>'
+    },    
 ];
 
 function preloadImages() {

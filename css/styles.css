@@ -10874,8 +10874,6 @@ body.blog-page {
   position: fixed;
   margin-top: 1rem;
   width: 100%;
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%); */
   z-index: 1; /* 确保文字在背景上方 */
   opacity: 0; /* 初始透明 */
   transition: opacity 1s ease-in-out;
