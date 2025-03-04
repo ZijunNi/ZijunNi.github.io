@@ -11,6 +11,12 @@ const backgroundData = [
         english_title: 'East Polar Plaza, Fuyuan, China',
         pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
     },
+    {
+        image: './assets/images/background/bg3.png',
+        chinese_title: '富锦 · 锦山（别拉音子山）',
+        english_title: 'Jinshan Hill (Bielayin Hill), Fujin, China',
+        pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
+    },
 ];
 
 function preloadImages() {
