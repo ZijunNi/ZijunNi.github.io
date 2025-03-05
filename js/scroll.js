@@ -155,7 +155,7 @@ function initCarousel() {
     currentCaption.style.opacity = 1;
 
     // 设置轮播间隔（建议5秒）
-    setInterval(changeBackground, 86400*1000);
+    setInterval(changeBackground, 8*1000);
 }
 
 document.addEventListener('DOMContentLoaded', initCarousel);
