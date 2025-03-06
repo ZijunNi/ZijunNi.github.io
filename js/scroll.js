@@ -14,7 +14,7 @@ const backgroundData = [
     {
         image: './assets/images/background/bg3.jpg',
         chinese_title: '富锦 · 锦山 <span style="font-size:0.5em">（别拉音子山）</span>',
-        english_title: 'Jinshan Hill <span style="font-size:0.5em">(Bielayin Hill)</span>, Fujin, China',
+        english_title: 'Jin Hill <span style="font-size:0.5em">(Bielayin Hill)</span>, Fujin, China',
         pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
     },
     {
@@ -34,13 +34,20 @@ const backgroundData = [
         chinese_title: '柏林 · 奥伯鲍姆桥',
         english_title: '<span style="font-size:80%;">Oberbaumbrüke, Berlin, Deutschland<br/>Oberbaum Bridge, Berlin, Germany</span>',
         pic_date: '<span style="font-size:90%;">摄于2024年11月16日 Pictured at Nov. 16th, 2024</span>'
+    },  
+
+    {
+        image: './assets/images/background/bg8.jpg',
+        chinese_title: '北京 · 国贸中央商务区',
+        english_title: 'Guomao CBD, Beijing, China',
+        pic_date: '<span style="font-size:90%;">摄于2024年12月8日 Pictured at Dec. 8th, 2024</span>'
     },    
     
     // 暗色图片专用样式
     {
         image: './assets/images/background/bg7.jpg',
         chinese_title: '<span style="color: var(--bs-gray-400);">南昌 · 赣江两岸</span>',
-        english_title: '<span style="color: var(--bs-gray-400);">Two Sides of the Ganjiang river</span>',
+        english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Two Sides of the Gan river, Nanchang, China</span>',
         pic_date: '<span style="color: var(--bs-gray-400);">摄于2025年2月5日 Pictured at Feb. 5th, 2025</span>'
     },    
 ];
