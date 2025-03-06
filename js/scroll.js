@@ -1,24 +1,24 @@
 const backgroundData = [
     {
-        image: './assets/images/background/bg2.jpg',
+        image: './assets/images/background/bg2.webp',
         chinese_title: '抚远 · 东极广场',
         english_title: 'East Polar Plaza, Fuyuan, China',
         pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
     },
     {
-        image: './assets/images/background/bg1.jpg',
+        image: './assets/images/background/bg1.webp',
         chinese_title: '富锦 · 001乡道',
         english_title: 'Village Road 001, Fujin, China',
         pic_date: '摄于2025年1月1日 Pictured at Jan. 1st, 2025'
     },
     {
-        image: './assets/images/background/bg3.jpg',
+        image: './assets/images/background/bg3.webp',
         chinese_title: '富锦 · 锦山 <span style="font-size:0.5em">（别拉音子山）</span>',
         english_title: 'Jin Hill <span style="font-size:0.5em">(Bielayin Hill)</span>, Fujin, China',
         pic_date: '摄于2024年12月31日 Pictured at Dec. 31st, 2024'
     },
     {
-        image: './assets/images/background/bg4.jpg',
+        image: './assets/images/background/bg4.webp',
         chinese_title: '延庆 · 野鸭湖国家湿地公园',
         english_title: 'Yeyahu National Wetland Park, Yanqing, China',
         pic_date: '摄于2024年12月3日 Pictured at Dec. 3rd, 2024'
@@ -37,7 +37,7 @@ const backgroundData = [
     },  
 
     {
-        image: './assets/images/background/bg8.jpg',
+        image: './assets/images/background/bg8.webp',
         chinese_title: '北京 · 国贸中央商务区',
         english_title: 'Guomao CBD, Beijing, China',
         pic_date: '<span style="font-size:90%;">摄于2024年12月8日 Pictured at Dec. 8th, 2024</span>'
@@ -45,7 +45,7 @@ const backgroundData = [
     
     // 暗色图片专用样式
     {
-        image: './assets/images/background/bg7.jpg',
+        image: './assets/images/background/bg7.webp',
         chinese_title: '<span style="color: var(--bs-gray-400);">南昌 · 赣江两岸</span>',
         english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Two Sides of the Gan river, Nanchang, China</span>',
         pic_date: '<span style="color: var(--bs-gray-400);">摄于2025年2月5日 Pictured at Feb. 5th, 2025</span>'
