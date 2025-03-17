@@ -10850,6 +10850,12 @@ body.blog-page {
   background-color: #FAEBD7; /* 使用纯色背景 */
 }
 
+/* 博客页面背景 */
+body.academics-page {
+  background: url('../assets/chestnut-bg.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
 /* 以下两个类是用与实现图片轮播效果 */
 .background-carousel {
   position: fixed;
