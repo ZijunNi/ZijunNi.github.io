@@ -28,6 +28,12 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 })
 
+fetch('/navbar-blog.html')
+.then(response => response.text())
+.then(html => {
+document.getElementById('navbar-placeholder-blog').innerHTML = html;
+});
+
 fetch('/navbar.html')
 .then(response => response.text())
 .then(html => {

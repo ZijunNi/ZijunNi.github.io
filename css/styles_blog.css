@@ -10733,3 +10733,8 @@ header.masthead .post-heading .meta a {
   font-size: 0.8em;
   color: #c7254e;
 }
+
+.current-item{
+  font-size: 1em;
+  font-weight: bolder;
+}
