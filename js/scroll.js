@@ -42,6 +42,13 @@ const backgroundData = [
         english_title: 'Guomao CBD, Beijing, China',
         pic_date: '<span style="font-size:90%;">摄于2024年12月8日 Pictured at Dec. 8th, 2024</span>'
     },    
+    {
+        image: './assets/images/background/bg9.jpg',
+        chinese_title: '武汉 · 红楼',
+        english_title: 'Red Chamber, Wuhan, China',
+        pic_date: '<span style="font-size:90%;">摄于2025年3月25日 Pictured at Mar. 25th, 2025</span>'
+    },   
+
     
     // 暗色图片专用样式
     {
