@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Latex初学手记（1）</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles_blog.css" rel="stylesheet" />
+        <style>
+            p{text-indent: 2em;} /*首行缩进*/
+        </style>
+    </head>
+    <body>
+        <!-- Navigation-->
+        <div id="navbar-placeholder-blog"></div>
+        
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('./title.webp')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Latex初学手记（1）</h1>
+                            <h2 class="subheading">旧主页重制.jpg</h2>
+                            <span class="meta">
+                                作者 Posted by
+                                <a href="#!">倪子珺 Ni Zijun</a>
+                                2025.4.5
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h2 id="更新" class="section-heading">2023年3月21日更新</h2>
+                        <p>LaTeX自带的TexWork编译器比较难看也比较难用，<a href="https://zhuanlan.zhihu.com/p/38178015" target="_blank">这里</a>推荐一个很好的知乎教程教你如何在VS Code软件中书写和编译LaTeX文件。</p>
+
+                        <h2 id="入门">入门</h2>
+
+                        <p>下载地址<a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso" target="_blank">清华镜像</a>和<a href="https://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/" target="_blank">中国科大镜像（下载texliveYYYY.iso或者texlive.iso均可）</a></p>
+                        <p>废话不多说<font size = "2" color = "grey">（要不是字丑我何必去学这玩意。。。）</font>，先看LaTex文档的基本结构吧：</p>
+
+                        <h2 class="section-heading">SafeConnect软件无法打开问题</h2>
+                        <p>手册里和<a href="https://162.105.160.15:6443">网站</a>上提供的下载链接下载到的软件已经无法在我的系统上打开，运行时弹出如下提示：</p>
+                        <!-- <code class="inline-code">console.log("Hello World")</code> -->
+                        <img class="img-fluid" src="./p1.png" alt="提示.jpg" />
+                        <span class="caption text-muted">恶意软件提示和无法打开提示</span>
+                        <p>采用多种方法（如修改系统设置为允许任意来源的程序安装、在简介页面勾选“覆盖恶意软件保护”等）均无法打开程序，即使没有恶意软件提示也仍然会提示应用程序无法打开。上网搜寻一通后发现似乎对软件重新签名可以解决这个问题，但是显然我不会.jpg，于是还是得找别的办法。</p>
+                        <p>正在此时，我突然想到，按理这个程序的厂商应该不会只出一个版本就倒闭了，肯定还会有更新的版本，新版本应该是可以在我的电脑上运行的。于是我看了一下程序包的签名显示“dptech. All rights reserved.”，随即在网上搜索“dptech safeconnect”，发现果然有一个新版程序“DPSafeConnect”，但是似乎是个iPad应用程序，不过不重要，我们先下载下来看看。</p>
+                        <img class="img-fluid" src="./p2.png" alt="软件商店页面.jpg" />
+                        <span class="caption text-muted">软件商店页面</span>
+                        <p>下载之后发现是可以运行的，按提供的手册里填上VPN的地址<code class="inline-code">https://162.105.160.15:6443</code>以及已有的VPN账号和密码后果然可以连接上！现在再打开<a href="https://162.105.160.15:6443">堡垒机页面</a><code class="inline-code">https://10.100.1.88</code>发现已经可以打开了。</p>
+                        <!-- <blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote> -->
+                        <h2 class="section-heading">本地终端配置</h2>
+                        <p>不过这样连接上的VPN不能像Windows上那样弹出北极星的Web操作页面，我也忘了这个东西的链接是多少，想到本地本来就有一个之前用天河二号的时候下载的Terminal软件Tabby（<a href="https://tabby.sh/">软件官网</a>），于是开始考虑使用这个软件对北极星进行访问。</p>
+                        <p>打开Tabby就可以看到“设置“的选项，打开设置后在左侧选择“配置与连接”，然后选择“新建”来新建一个配置。按照北极星手册中的步骤，选择“SSH连接”，名称可以随便填写，主机则填写<code class="inline-code">10.100.1.88</code>，端口号仍保持22不变，用户名则填写北极星堡垒机的登陆用户名即可。这里比较重要的一点是，身份验证需要选择“交互式”，否则后面没法输入动态口令。最后保存配置即可。</p>
+                        <img class="img-fluid" src="./p3.png" alt="Tabby.jpg" />
+                        <p>倘若VPN已经连接好，此时便可开始连接。在Tabby页面的顶部，点击加号右侧的“配置和连接”按钮（长得像标签页的那个按钮），选择刚刚新建的配置名称便可开始连接，然后就会在窗口底部弹出键盘交互认证的输入框，在其中先输入堡垒机的密码，然后空格之后加上OTP动态口令，回车之后即可连接成功了。</p>
+                        <blockquote class="blockquote">本质上来讲我觉得换个别的VPN软件也行，不过我还没试过，下次一定.jpg。如果有任何问题，欢迎向底部的邮箱发邮件和我交流🥺</blockquote>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <!-- <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul> -->
+                        <div class="small text-center text-muted fst-italic">电子邮箱 E-mail: nizijun@stu.pku.edu.cn</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; 倪子珺的个人主页 Ni Zijun's Website 2025</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>
