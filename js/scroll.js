@@ -57,6 +57,12 @@ const backgroundData = [
         english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Two Sides of the Gan river, Nanchang, China</span>',
         pic_date: '<span style="color: var(--bs-gray-400);">摄于2025年2月5日 Pictured at Feb. 5th, 2025</span>'
     },    
+    {
+        image: './assets/images/background/bg10.webp',
+        chinese_title: '<span style="color: var(--bs-gray-400);">北京 · 月全食</span>',
+        english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Lunar Eclipse Shot in Beijing</span>',
+        pic_date: '<span style="color: var(--bs-gray-400);">摄于2025年9月8日 Pictured at Sept. 8th, 2025</span>'
+    },    
 ];
 
 // const backgroundData = [
