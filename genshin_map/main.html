@@ -113,6 +113,10 @@
         max: 4,
         initial: 0
       },
+      view: {
+        center: { x: 1320, y: 1458 }, // 初始中心（像素坐标）
+        zoom: 3
+      },
 
       // 道路分级显示规则（基于瓦片 zoom：0..maxZoom）
       roadLevelRules: [
@@ -189,8 +193,7 @@
 
     // 限制视野在图片范围附近（强烈建议）
     map.setMaxBounds(imageBounds);
-    map.fitBounds(imageBounds);
-    map.setZoom(CONFIG.zoom.initial);
+    map.setView(toLatLng(CONFIG.view.center.x, CONFIG.view.center.y), CONFIG.view.zoom);
 
     /**
      * =====================================================
@@ -243,15 +246,20 @@
 
       const info = markerData.info ?? {};
       const tags = Array.isArray(info.tags) ? info.tags : [];
+      const desc = escapeHtml(info.description ?? "—").replace(/\n/g, "<br>");
+      const loca = escapeHtml(info.location ?? "—").replace(/\n/g, "<br>");
 
       sidebarBody.innerHTML = `
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div>
-            <div style="font-size:12px; color:#666;">描述</div>
-            <div>${escapeHtml(info.description ?? "—")}</div>
-          </div>
+      <div style="display:flex; flex-direction:column; gap:5px;">
 
-          </div>
+        <div style="display:flex; align-items:center; padding:3px 8px; background:#d4c7ac;">
+          <img src="./assets/location.png" alt="位置" style="width:12px; height:16px; margin-right:8px;" />
+          <div style="font-size:16px; color:#676c71;">${loca}</div>
+        </div>
+
+        <div style="font-size:16px; color:#676c71; font-weight:normal; padding:8px 8px;">${desc}</div>
+
+      </div>
       `;
       // 如果需要添加其他元素在侧边栏，可以按照下面的格式向上面的sidebarBody.innerHTML添加内容。
       // sidebarBody.innerHTML = `
