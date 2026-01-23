@@ -25,11 +25,20 @@
 
     .sidebar { height: 100%; border-left: 1px solid #e6e6e6; background: #d9d3c9; display: flex; flex-direction: column; }
     .sidebar-header { background: #3e4556; padding: 14px 14px 10px 14px; border-bottom: 1px solid #eee; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .sidebar-header h2 { color: #d1bd8c; margin: 0; font-size: 14px; font-weight: 650; line-height: 1.2; }
+    .sidebar-title { display:flex; align-items:center; gap:10px; min-width:0; }
+    .sidebar-title-text { min-width:0; }
+    .sidebar-icon { width: 28px; height: 28px; object-fit: contain; flex: 0 0 auto; }
+    .sidebar-icon[hidden] { display: none; }
+    .sidebar-header h2 { color: #d1bd8c; margin: 0; font-size: 18px; font-weight: 650; line-height: 1.2; }
     .sidebar-header .meta { font-size: 12px; color: #d1bd8c; margin-top: 4px; }
+    .sidebar-header .meta:empty { display: none; }
     .sidebar-body { color: #6b6c74; padding: 14px; overflow: auto; font-size: 16px; line-height: 1.55; }
-    .btn { appearance:none; border:1px solid #ddd; background:#fafafa; border-radius:8px; padding:8px 10px; cursor:pointer; font-size:12px; }
-    .btn:hover { background:#f2f2f2; }
+    .btn { appearance:none; border:none; background:transparent; padding:0; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:#d1bd8c; border-radius:6px; }
+    .btn:hover { background: rgba(209, 189, 140, 0.18); }
+    .btn:focus-visible { outline: 2px solid #d1bd8c; outline-offset: 2px; }
+    .btn-icon { width:18px; height:18px; display:none; }
+    .btn.has-icon .btn-icon { display:block; }
+    .btn.has-icon .btn-symbol { display:none; }
 
     .hud {
       position:absolute; top:10px; left:10px; z-index:1000;
@@ -45,6 +54,7 @@
 
     @media (max-width: 900px) {
       .app { grid-template-columns: 1fr; grid-template-rows: 1fr 260px; }
+      .app.sidebar-hidden { grid-template-rows: 1fr; }
       .sidebar { border-left: none; border-top: 1px solid #e6e6e6; }
     }
   </style>
@@ -59,11 +69,17 @@
 
     <aside class="sidebar">
       <div class="sidebar-header">
-        <div>
-          <h2 id="sidebarTitle">未选择标记</h2>
-          <div class="meta" id="sidebarMeta">点击地图上的标记点以查看详细信息</div>
+        <div class="sidebar-title">
+          <img class="sidebar-icon" id="sidebarIcon" alt="" hidden />
+          <div class="sidebar-title-text">
+            <h2 id="sidebarTitle">未选择标记</h2>
+            <div class="meta" id="sidebarMeta">点击地图上的标记点以查看详细信息</div>
+          </div>
         </div>
-        <button class="btn" id="clearSelectionBtn" aria-label="关闭">清除</button>
+      <button class="btn" id="clearSelectionBtn" aria-label="关闭">
+        <img class="btn-icon" id="clearSelectionIcon" src="./assets/close.webp" alt="" />
+        <!-- <span class="btn-symbol" aria-hidden="true">×</span> -->
+      </button>
       </div>
       <div class="sidebar-body" id="sidebarBody">
         <p>本 Demo 使用自定义坐标系 <code>L.CRS.Simple</code>，底图以 <code>tile pyramid</code>（瓦片金字塔）分块加载。</p>
@@ -87,7 +103,7 @@
      * 2) tiles 的 urlTemplate（离线切片输出目录）
      * 3) tiles 的 minZoom/maxZoom/tileSize 是否与切片工具一致
      */
-    const CONFIG = {
+    const DEFAULT_CONFIG = {
       tiles: {
         urlTemplate: "./assets/tiles/{z}/{x}/{y}.png",
         tileSize: 256,       // 与切片工具一致：常见 256 或 512
@@ -101,7 +117,9 @@
       // 原图像素尺寸（非常关键：用于构造 CRS.Simple 的边界）
       image: {
         width: 2352,   // 改为你的原始大图宽度（像素）
-        height: 2628   // 改为你的原始大图高度（像素）
+        height: 2628,  // 改为你的原始大图高度（像素）
+        origin: { x: 0, y: 0 }, // 旧图在新图中的偏移（用于向左/向上扩展）
+        scale: 1       // 标点坐标相对底图的缩放比例（缩放底图时使用）
       },
       coord: {
         // 若原始数据是“左下角为原点”，设为 true 以翻转 y
@@ -116,6 +134,9 @@
       view: {
         center: { x: 1320, y: 1458 }, // 初始中心（像素坐标）
         zoom: 3
+      },
+      hud: {
+        visible: false // 在此处配置是否显示HUD
       },
 
       // 道路分级显示规则（基于瓦片 zoom：0..maxZoom）
@@ -135,6 +156,41 @@
       ]
     };
 
+    let CONFIG = DEFAULT_CONFIG;
+    let map;
+    let maxTileZoom = 0;
+
+    function mergeConfig(base, override) {
+      const o = override ?? {};
+      const merged = { ...base, ...o };
+      merged.tiles = { ...base.tiles, ...o.tiles };
+      merged.image = { ...base.image, ...o.image };
+      merged.coord = { ...base.coord, ...o.coord };
+      merged.zoom = { ...base.zoom, ...o.zoom };
+      merged.view = { ...base.view, ...o.view };
+      merged.hud = { ...base.hud, ...o.hud };
+      merged.roadLevelRules = o.roadLevelRules ?? base.roadLevelRules;
+      merged.markerLevelRules = o.markerLevelRules ?? base.markerLevelRules;
+      return merged;
+    }
+
+    async function loadExternalConfig() {
+      try {
+        const res = await fetch("./tiles.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`tiles.json status ${res.status}`);
+        const json = await res.json();
+        return mergeConfig(DEFAULT_CONFIG, json);
+      } catch (err) {
+        console.warn("[map] tiles.json 未加载，使用内置默认配置。", err);
+        return DEFAULT_CONFIG;
+      }
+    }
+
+    function getImageScale() {
+      const s = Number(CONFIG?.image?.scale);
+      return Number.isFinite(s) && s > 0 ? s : 1;
+    }
+
     /**
      * =====================================================
      * Demo 数据（坐标单位：像素）
@@ -148,52 +204,54 @@
      * 初始化地图（CRS.Simple）
      * =====================================================
      */
-    const map = L.map("map", {
-      crs: L.CRS.Simple,
-      minZoom: CONFIG.zoom.min,
-      maxZoom: CONFIG.zoom.max,
-      attributionControl: false,
-      zoomControl: true,
-      zoomDelta: 0.5,
-      zoomSnap: 0.5,
-      preferCanvas: true
-    });
-    map.zoomControl.setPosition("bottomleft");
+    function initMap() {
+      map = L.map("map", {
+        crs: L.CRS.Simple,
+        minZoom: CONFIG.zoom.min,
+        maxZoom: CONFIG.zoom.max,
+        attributionControl: false,
+        zoomControl: true,
+        zoomDelta: 0.5,
+        zoomSnap: 0.5,
+        preferCanvas: true
+      });
+      map.zoomControl.setPosition("bottomleft");
 
-    // CRS.Simple + 切片：用 maxZoom 把像素坐标映射到 CRS 坐标系
-    const maxTileZoom = CONFIG.tiles.maxZoom;
-    const imageBounds = L.latLngBounds(
-      map.unproject([0, 0], maxTileZoom),
-      map.unproject([CONFIG.image.width, CONFIG.image.height], maxTileZoom)
-    );
+      // CRS.Simple + 切片：用 maxZoom 把像素坐标映射到 CRS 坐标系
+      maxTileZoom = CONFIG.tiles.maxZoom;
+      const imageBounds = L.latLngBounds(
+        map.unproject([0, 0], maxTileZoom),
+        map.unproject([CONFIG.image.width, CONFIG.image.height], maxTileZoom)
+      );
 
-    /**
-     * =====================================================
-     * 底图：瓦片分块加载（核心替换点）
-     * =====================================================
-     * Leaflet 会根据当前视野/缩放级别，自动请求可见范围内的 tiles：
-     *   {z}/{x}/{y}.png
-     * 从而避免一次性加载整张超大图。
-     */
-    const baseTiles = L.tileLayer(CONFIG.tiles.urlTemplate, {
-      tileSize: CONFIG.tiles.tileSize,
-      minZoom: CONFIG.tiles.minZoom,
-      maxZoom: CONFIG.tiles.maxZoom,
-      bounds: imageBounds,
-      noWrap: true,
-      opacity: CONFIG.tiles.opacity,
-      tms: CONFIG.tiles.tms,
+      /**
+       * =====================================================
+       * 底图：瓦片分块加载（核心替换点）
+       * =====================================================
+       * Leaflet 会根据当前视野/缩放级别，自动请求可见范围内的 tiles：
+       *   {z}/{x}/{y}.png
+       * 从而避免一次性加载整张超大图。
+       */
+      const baseTiles = L.tileLayer(CONFIG.tiles.urlTemplate, {
+        tileSize: CONFIG.tiles.tileSize,
+        minZoom: CONFIG.tiles.minZoom,
+        maxZoom: CONFIG.tiles.maxZoom,
+        bounds: imageBounds,
+        noWrap: true,
+        opacity: CONFIG.tiles.opacity,
+        tms: CONFIG.tiles.tms,
 
-      // 体验优化（可选）
-      keepBuffer: 2,
-      updateWhenIdle: true,
-      updateWhenZooming: false
-    });
-    baseTiles.addTo(map);
+        // 体验优化（可选）
+        keepBuffer: 2,
+        updateWhenIdle: true,
+        updateWhenZooming: false
+      });
+      baseTiles.addTo(map);
 
-    // 限制视野在图片范围附近（强烈建议）
-    map.setMaxBounds(imageBounds);
-    map.setView(toLatLng(CONFIG.view.center.x, CONFIG.view.center.y), CONFIG.view.zoom);
+      // 限制视野在图片范围附近（强烈建议）
+      map.setMaxBounds(imageBounds);
+      map.setView(toLatLng(CONFIG.view.center.x, CONFIG.view.center.y), CONFIG.view.zoom);
+    }
 
     /**
      * =====================================================
@@ -201,14 +259,23 @@
      * =====================================================
      */
     function toLatLng(x, y) {
-      const py = CONFIG.coord.flipY ? (CONFIG.image.height - y) : y;
-      return map.unproject([x, py], maxTileZoom);
+      const scale = getImageScale();
+      const origin = CONFIG.image.origin ?? { x: 0, y: 0 };
+      const px = (x * scale) + origin.x;
+      const pyRaw = (y * scale) + origin.y;
+      const py = CONFIG.coord.flipY ? (CONFIG.image.height - pyRaw) : pyRaw;
+      return map.unproject([px, py], maxTileZoom);
     }
 
     function toPixel(latlng) {
+      const scale = getImageScale();
+      const origin = CONFIG.image.origin ?? { x: 0, y: 0 };
       const p = map.project(latlng, maxTileZoom);
-      const y = CONFIG.coord.flipY ? (CONFIG.image.height - p.y) : p.y;
-      return { x: p.x, y };
+      const pyRaw = CONFIG.coord.flipY ? (CONFIG.image.height - p.y) : p.y;
+      return {
+        x: (p.x - origin.x) / scale,
+        y: (pyRaw - origin.y) / scale
+      };
     }
 
     /**
@@ -220,12 +287,25 @@
     const sidebarTitle = document.getElementById("sidebarTitle");
     const sidebarMeta = document.getElementById("sidebarMeta");
     const sidebarBody = document.getElementById("sidebarBody");
-    document.getElementById("clearSelectionBtn").addEventListener("click", clearSidebar);
+    const sidebarIcon = document.getElementById("sidebarIcon");
+    const clearSelectionBtn = document.getElementById("clearSelectionBtn");
+    const clearSelectionIcon = document.getElementById("clearSelectionIcon");
+
+    clearSelectionBtn.addEventListener("click", clearSidebar);
+
+    const clearBtnIconUrl = clearSelectionBtn?.dataset.icon || clearSelectionIcon?.getAttribute("src");
+    if (clearBtnIconUrl && clearSelectionIcon) {
+      if (clearSelectionBtn?.dataset.icon) {
+        clearSelectionIcon.src = clearBtnIconUrl;
+      }
+      clearSelectionBtn?.classList.add("has-icon");
+    }
 
     function setSidebarVisible(visible) {
       appRoot.classList.toggle("sidebar-hidden", !visible);
       // Map container size changes when sidebar is toggled; force Leaflet to recompute tiles.
       requestAnimationFrame(() => {
+        if (!map) return;
         map.invalidateSize({ pan: false });
       });
     }
@@ -239,10 +319,27 @@
         .replaceAll("'", "&#039;");
     }
 
+    function updateSidebarIcon(markerData) {
+      if (!sidebarIcon) return;
+      const iconSpec = markerData?.icon ?? {};
+
+      if (iconSpec.url) {
+        sidebarIcon.src = iconSpec.url;
+        sidebarIcon.alt = markerData?.name ? `${markerData.name} 图标` : "标记图标";
+        sidebarIcon.hidden = false;
+        return;
+      }
+
+      sidebarIcon.removeAttribute("src");
+      sidebarIcon.alt = "";
+      sidebarIcon.hidden = true;
+    }
+
     function showMarkerInSidebar(markerData) {
       setSidebarVisible(true);
       sidebarTitle.textContent = markerData.name;
-      sidebarMeta.textContent = `ID: ${markerData.id} · 类型: ${markerData.info?.type ?? "-"}`;
+      sidebarMeta.textContent = "";
+      updateSidebarIcon(markerData);
 
       const info = markerData.info ?? {};
       const tags = Array.isArray(info.tags) ? info.tags : [];
@@ -294,6 +391,7 @@
     function clearSidebar() {
       sidebarTitle.textContent = "未选择标记";
       sidebarMeta.textContent = "点击地图上的标记点以查看详细信息";
+      updateSidebarIcon(null);
       sidebarBody.innerHTML = `<p>已清除选择。</p><p>继续点击标记点以查看详细信息。</p>`;
       setSidebarVisible(false);
     }
@@ -411,12 +509,24 @@
      */
     const hud = document.getElementById("hud");
 
+    function isHudEnabled() {
+      return CONFIG?.hud?.visible !== false;
+    }
+
+    function setHudVisible() {
+      if (!hud) return;
+      hud.style.display = isHudEnabled() ? "" : "none";
+    }
+
     function refreshHud(extraLine = "") {
+      if (!isHudEnabled() || !hud) return;
       const z = map.getZoom();
       const c = map.getCenter();
       const centerPx = toPixel(c);
       const rulesText = CONFIG.roadLevelRules.map(r => `L${r.level}: zoom ≥ ${r.minZoom}`).join(", ");
       const markerRulesText = CONFIG.markerLevelRules.map(r => `L${r.level}: zoom ≥ ${r.minZoom}`).join(", ");
+      const origin = CONFIG.image.origin ?? { x: 0, y: 0 };
+      const scale = getImageScale();
 
       hud.innerHTML = `
         <div><strong>坐标系：</strong><code>CRS.Simple</code>（平面/像素坐标）</div>
@@ -426,18 +536,23 @@
         <div><strong>道路显示规则：</strong>${escapeHtml(rulesText)}</div>
         <div><strong>标记显示规则：</strong>${escapeHtml(markerRulesText)}</div>
         <div style="color:#666;margin-top:6px;">原图尺寸：<code>${CONFIG.image.width}×${CONFIG.image.height}</code>（像素）</div>
+        <div style="color:#666;margin-top:4px;">origin：<code>${origin.x}, ${origin.y}</code>，scale：<code>${scale}</code></div>
         ${extraLine ? `<div style="margin-top:6px;"><strong>鼠标：</strong>${extraLine}</div>` : ``}
       `;
     }
 
-    map.on("mousemove", (e) => {
-      const px = toPixel(e.latlng);
-      refreshHud(`x=${px.x.toFixed(1)}, y=${px.y.toFixed(1)}`);
-    });
+    function bindMapEvents() {
+      map.on("mousemove", (e) => {
+        const px = toPixel(e.latlng);
+        refreshHud(`x=${px.x.toFixed(1)}, y=${px.y.toFixed(1)}`);
+      });
 
-    map.on("click", () => {
-      clearSidebar();
-    });
+      map.on("click", () => {
+        clearSidebar();
+      });
+
+      map.on("zoomend moveend", refreshAll);
+    }
 
     /**
      * =====================================================
@@ -450,18 +565,19 @@
       refreshHud();
     }
 
-    map.on("zoomend moveend", refreshAll);
+    async function initApp() {
+      CONFIG = await loadExternalConfig();
+      initMap();
+      setHudVisible();
+      bindMapEvents();
+      initRoadLayers();
+      initMarkerLayers();
+      initMarkers();
+      setSidebarVisible(false);
+      refreshAll();
+    }
 
-    /**
-     * =====================================================
-     * 启动
-     * =====================================================
-     */
-    initRoadLayers();
-    initMarkerLayers();
-    initMarkers();
-    setSidebarVisible(false);
-    refreshAll();
+    initApp();
   </script>
 </body>
 </html>

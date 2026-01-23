@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "image": {
+    "width": 2352,
+    "height": 2628,
+    "origin": { "x": 0, "y": 0 },
+    "scale": 1
+  },
+  "coord": {
+    "flipY": true
+  },
+  "tiles": {
+    "urlTemplate": "./assets/tiles/{z}/{x}/{y}.png",
+    "tileSize": 256,
+    "minZoom": 0,
+    "maxZoom": 4,
+    "tms": false
+  },
+  "howTo": {
+    "expandRightDown": "向右/向下扩展时：保持 origin 不变（仍为 0,0），仅增加 image.width / image.height，重新生成更大范围的瓦片即可。标点坐标无需改。",
+    "expandLeftUp": "向左/向上扩展时：需要调整 image.origin，把旧图左上角在新图中的偏移量写入 origin，例如旧图被整体向右下移动了 (dx, dy)，则 origin={x:dx,y:dy}。标点仍写旧坐标，不要手动加偏移。",
+    "shrinkCrop": "缩小（裁剪范围）时：直接减小 image.width / image.height，或改变瓦片覆盖范围。标点坐标不变，但超出新范围的点会被隐藏或不可见。",
+    "shrinkScale": "缩小（按比例缩放底图）时：必须设置 image.scale < 1，并在坐标换算中使用该比例（或等效地把标点坐标乘以 scale）。此方式通常要求重新切瓦片。",
+    "tileParams": "如果 tileSize / maxZoom / tms 与切片工具不一致，会导致底图和标点错位；这些参数必须和切片输出保持一致。"
+  }
+}
