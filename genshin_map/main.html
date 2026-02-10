@@ -19,7 +19,14 @@
   ></script>
 
   <style>
-    html, body { height: 100%; margin: 0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif; color:#111; }
+    @font-face {
+      font-family: "GenshinCustom";
+      src: url("./assets/a.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    html, body { height: 100%; margin: 0; font-family: "GenshinCustom",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif; color:#111; }
     .app { height: 100%; display: grid; grid-template-columns: 1fr 360px; }
     #map { height: 100%; width: 100%; background:#f5f5f5; }
 
@@ -51,6 +58,25 @@
 
     .app.sidebar-hidden { grid-template-columns: 1fr; }
     .app.sidebar-hidden .sidebar { display: none; }
+
+    .map-text-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      /* background: rgba(61, 69, 86, 0.92); */
+      color: #ffffff;
+      font-size: 24px;
+      line-height: 1.2;
+      /* box-shadow: 0 6px 14px rgba(0,0,0,0.15); */
+      white-space: nowrap;
+      font-family: "GenshinCustom","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      user-select: none;
+      transform: translate(-50%, -100%);
+      transform-origin: 50% 100%;
+    }
+
 
     @media (max-width: 900px) {
       .app { grid-template-columns: 1fr; grid-template-rows: 1fr 260px; }
@@ -93,6 +119,7 @@
   </div>
 
   <script src="./data/markers.js"></script>
+  <script src="./data/texts.js"></script>
   <script src="./data/roads.js"></script>
   <script>
     /**
@@ -153,6 +180,11 @@
         { level: 3, minZoom: 2 },
         { level: 4, minZoom: 3 },
         { level: 5, minZoom: 4 }
+      ],
+      textLevelRules: [
+        { level: 1, minZoom: 0 },
+        { level: 2, minZoom: 2 },
+        { level: 3, minZoom: 4 }
       ]
     };
 
@@ -171,6 +203,7 @@
       merged.hud = { ...base.hud, ...o.hud };
       merged.roadLevelRules = o.roadLevelRules ?? base.roadLevelRules;
       merged.markerLevelRules = o.markerLevelRules ?? base.markerLevelRules;
+      merged.textLevelRules = o.textLevelRules ?? base.textLevelRules;
       return merged;
     }
 
@@ -198,6 +231,7 @@
      */
     const markers = Array.isArray(window.markers) ? window.markers : [];
     const roads = Array.isArray(window.roads) ? window.roads : [];
+    const texts = Array.isArray(window.texts) ? window.texts : [];
 
     /**
      * =====================================================
@@ -216,6 +250,8 @@
         preferCanvas: true
       });
       map.zoomControl.setPosition("bottomleft");
+      const textPane = map.createPane("textPane");
+      textPane.style.zIndex = "680";
 
       // CRS.Simple + 切片：用 maxZoom 把像素坐标映射到 CRS 坐标系
       maxTileZoom = CONFIG.tiles.maxZoom;
@@ -388,6 +424,27 @@
           
     }
 
+    function showTextInSidebar(textData) {
+      setSidebarVisible(true);
+      sidebarTitle.textContent = textData.name ?? "文字信息";
+      sidebarMeta.textContent = "";
+      updateSidebarIcon(textData);
+
+      const info = textData.info ?? {};
+      const desc = escapeHtml(info.description ?? textData.text ?? "—").replace(/\n/g, "<br>");
+      const loca = escapeHtml(info.location ?? "—").replace(/\n/g, "<br>");
+
+      sidebarBody.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:5px;">
+        <div style="display:flex; align-items:center; padding:3px 8px; background:#d4c7ac;">
+          <img src="./assets/location.png" alt="位置" style="width:12px; height:16px; margin-right:8px;" />
+          <div style="font-size:16px; color:#676c71;">${loca}</div>
+        </div>
+        <div style="font-size:16px; color:#676c71; font-weight:normal; padding:8px 8px;">${desc}</div>
+      </div>
+      `;
+    }
+
     function clearSidebar() {
       sidebarTitle.textContent = "未选择标记";
       sidebarMeta.textContent = "点击地图上的标记点以查看详细信息";
@@ -504,6 +561,66 @@
 
     /**
      * =====================================================
+     * Text Labels（文字模块）
+     * =====================================================
+     */
+    const textLayersByLevel = new Map();
+    const textObjects = [];
+
+    function initTextLayers() {
+      for (const rule of CONFIG.textLevelRules) {
+        if (!textLayersByLevel.has(rule.level)) {
+          textLayersByLevel.set(rule.level, L.layerGroup().addTo(map));
+        }
+      }
+    }
+
+    function createTextIcon(textSpec) {
+      const label = escapeHtml(textSpec.text ?? textSpec.name ?? "");
+      const badge = textSpec.badge === false ? "" : `<span class="badge"></span>`;
+      const html = `<span class="map-text-label">${badge}<span>${label}</span></span>`;
+      return L.divIcon({
+        html,
+        className: "",
+        iconSize: textSpec.size ?? null,
+        iconAnchor: textSpec.anchor ?? [0, 0]
+      });
+    }
+
+    function initTexts() {
+      for (const t of texts) {
+        const icon = createTextIcon(t);
+        const textMarker = L.marker(toLatLng(t.x, t.y), { title: t.name ?? t.text ?? "", icon, pane: "textPane" });
+        textMarker.on("click", (e) => {
+          L.DomEvent.stopPropagation(e);
+          showTextInSidebar(t);
+        });
+
+        const group = textLayersByLevel.get(t.level) ?? textLayersByLevel.get(1);
+        if (group) {
+          textMarker.addTo(group);
+        } else {
+          textMarker.addTo(map);
+        }
+        textObjects.push({ data: t, textMarker });
+      }
+    }
+
+    function updateTextVisibility() {
+      const z = map.getZoom();
+      const rulesByLevel = new Map(CONFIG.textLevelRules.map(rule => [rule.level, rule]));
+
+      for (const [level, group] of textLayersByLevel.entries()) {
+        const rule = rulesByLevel.get(level);
+        const shouldShow = rule ? z >= rule.minZoom : true;
+        const onMap = map.hasLayer(group);
+        if (shouldShow && !onMap) group.addTo(map);
+        if (!shouldShow && onMap) map.removeLayer(group);
+      }
+    }
+
+    /**
+     * =====================================================
      * HUD：显示 zoom、鼠标坐标、规则
      * =====================================================
      */
@@ -562,6 +679,7 @@
     function refreshAll() {
       updateRoadVisibility();
       updateMarkerVisibility();
+      updateTextVisibility();
       refreshHud();
     }
 
@@ -572,7 +690,9 @@
       bindMapEvents();
       initRoadLayers();
       initMarkerLayers();
+      initTextLayers();
       initMarkers();
+      initTexts();
       setSidebarVisible(false);
       refreshAll();
     }
