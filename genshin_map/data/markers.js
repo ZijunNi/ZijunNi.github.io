@@ -372,4 +372,46 @@ window.markers = [
       location: "湖北省 · 汉川市" 
     }
   },
+
+  {
+    id: "harbin",
+    name: "哈尔滨",
+    level: 1,
+    x: 16546.5, y: 13186.5,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "黑龙江省 · 哈尔滨市" 
+    }
+  },
+
+  {
+    id: "jiamusi",
+    name: "佳木斯",
+    level: 1,
+    x: 17664, y: 13500,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "黑龙江省 · 佳木斯市" 
+    }
+  }
 ];

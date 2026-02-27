@@ -32,14 +32,15 @@ window.texts = [
       { text: "28%", size: 16, color: "#ffffff" }
     ],
     info: {
-      description: "支持局部字号、颜色与换行。",
-      location: "富文本示例",
+      description: "位于中国北方腹地，北靠蒙古高原，南望华北平原，东临渤海。",
+      location: "京津冀地区",
       // 可选：侧边栏描述下方图片（建议放在 ./assets/photos/ 下）
       // photo: "./assets/photos/jingjinji.jpg",
       // 可选：图片 alt 文本
       // photoAlt: "京津冀地区示意图"
     }
   },
+
   {
     id: "yunnan",
     name: "云南省",
@@ -59,5 +60,91 @@ window.texts = [
       // photo: "./assets/photos/yunnan.jpg",
       // photoAlt: "云南省风景"
     }
+  },
+
+  {
+    id: "hubei",
+    name: "湖北省",
+    level: 1,
+    x: 12804, y: 8639,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "湖北省", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "10%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "位于中国腹地正中。",
+      location: "湖北省",
+      // photo: "./assets/photos/yunnan.jpg",
+      // photoAlt: "云南省风景"
+    }
+  },
+
+  {
+    id: "jiangxi",
+    name: "江西省",
+    level: 1,
+    x: 13639, y: 8109,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "江西省", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "8%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "位于中国腹地正中。",
+      location: "江西省",
+      // photo: "./assets/photos/yunnan.jpg",
+      // photoAlt: "云南省风景"
+    }
+  },
+
+  {
+    id: "anhui",
+    name: "安徽省",
+    level: 1,
+    x: 13813, y: 9074,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "安徽省", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "8%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "位于中国腹地正中。",
+      location: "江西省",
+      // photo: "./assets/photos/yunnan.jpg",
+      // photoAlt: "云南省风景"
+    }
+  },
+
+  {
+    id: "heilongjiang",
+    name: "黑龙江省",
+    level: 1,
+    x: 17091, y: 13300,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "黑龙江省", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "19%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "位于中国东北边陲，是中国最靠东和北的省份。",
+      location: "黑龙江省",
+      // photo: "./assets/photos/yunnan.jpg",
+      // photoAlt: "云南省风景"
+    }
   }
+
+
 ];
