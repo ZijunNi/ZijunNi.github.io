@@ -40,6 +40,18 @@
     .sidebar-header .meta { font-size: 12px; color: #d1bd8c; margin-top: 4px; }
     .sidebar-header .meta:empty { display: none; }
     .sidebar-body { color: #6b6c74; padding: 14px; overflow: auto; font-size: 16px; line-height: 1.55; }
+    /* Sidebar optional photo shown below description (info.photo). */
+    .sidebar-photo-wrap { margin-top: 8px; margin-bottom: 28px; }
+    .sidebar-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 4px solid #ffffff;
+      border-radius: 1px;
+      box-shadow: 3px 3px 5px rgba(0,0,0,0.18);
+      background: #ffffff;
+      box-sizing: border-box;
+    }
     .btn { appearance:none; border:none; background:transparent; padding:0; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:#d1bd8c; border-radius:6px; }
     .btn:hover { background: rgba(209, 189, 140, 0.18); }
     .btn:focus-visible { outline: 2px solid #d1bd8c; outline-offset: 2px; }
@@ -59,9 +71,12 @@
     .app.sidebar-hidden { grid-template-columns: 1fr; }
     .app.sidebar-hidden .sidebar { display: none; }
 
+    /* Text label outer container (Leaflet divIcon root content):
+       controls anchor transform, overall font baseline, and badge + text layout. */
     .map-text-label {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       padding: 3px 8px;
       border-radius: 999px;
@@ -75,6 +90,18 @@
       user-select: none;
       transform: translate(-50%, -100%);
       transform-origin: 50% 100%;
+    }
+    /* Text content wrapper:
+       keeps width equal to content width (no auto-wrap), but centers each manual line. */
+    .map-text-content {
+      display: inline-block;
+      white-space: pre; /* only break on explicit \\n or <br> */
+      text-align: center;
+    }
+    /* Rich-text fragment span:
+       per-fragment style (color/size/weight...) is applied inline in JS renderTextContent(). */
+    .map-text-frag {
+      white-space: pre;
     }
 
 
@@ -127,19 +154,10 @@
      * 你需要配置的核心参数（瓦片加载版本）
      * =====================================================
      * 1) 原始大图像素宽高（仍然必须填写正确，用于 bounds）
-     * 2) tiles 的 urlTemplate（离线切片输出目录）
-     * 3) tiles 的 minZoom/maxZoom/tileSize 是否与切片工具一致
+     * 2) tiles 相关配置请放在 tiles.json 中（main.html 不再内置默认值）
      */
     const DEFAULT_CONFIG = {
-      tiles: {
-        urlTemplate: "./assets/tiles/{z}/{x}/{y}.png",
-        tileSize: 256,       // 与切片工具一致：常见 256 或 512
-        minZoom: 0,          // 通常从 0 开始
-        maxZoom: 4,          // 与切片输出的最高层级一致
-        opacity: 1.0,
-        // 如果你用的是 TMS 输出（y 方向索引不同），把 tms 改为 true
-        tms: false
-      },
+      tiles: {},
 
       // 原图像素尺寸（非常关键：用于构造 CRS.Simple 的边界）
       image: {
@@ -153,33 +171,33 @@
         flipY: true
       },
 
-      zoom: {
-        min: 0,
-        max: 4,
-        initial: 0
-      },
+      zoom: {},
       view: {
-        center: { x: 1320, y: 1458 }, // 初始中心（像素坐标）
-        zoom: 3
+        center: { x: 9478, y: 7117 }, // 初始中心（像素坐标）
+        zoom: 6
       },
       hud: {
-        visible: false // 在此处配置是否显示HUD
+        visible: true // 在此处配置是否显示HUD
       },
 
-      // 道路分级显示规则（基于瓦片 zoom：0..maxZoom）
+      // 道路分级显示规则（暂未启用道路显示）
       roadLevelRules: [
         { level: 1, minZoom: 0 }, // 大范围也显示
         { level: 2, minZoom: 2 }, // 中等放大显示
         { level: 3, minZoom: 4 }, // 更大放大才显示
       ],
 
-      // 标记分级显示规则（基于瓦片 zoom：0..maxZoom）
+      // 标记分级显示规则（文字和图表均按此规则）
       markerLevelRules: [
-        { level: 1, minZoom: 0 },
-        { level: 2, minZoom: 1 },
-        { level: 3, minZoom: 2 },
-        { level: 4, minZoom: 3 },
-        { level: 5, minZoom: 4 }
+        { level: 1, minZoom: 0 }, // 目前未启用的层级
+        { level: 2, minZoom: 1 }, // 目前未启用的层级
+        { level: 3, minZoom: 2 }, // 目前未启用的层级
+        { level: 4, minZoom: 3 }, // 目前未启用的层级
+        { level: 5, minZoom: 4 }, // 仅显示省级地名的层级
+        { level: 6, minZoom: 5 }, // 地级区域中心神像对应的层级，此级别(4.5以下)开始省级地名不显示
+        { level: 7, minZoom: 6 }, // 地级区域文字、传送锚点显示对应的层级
+        { level: 8, minZoom: 7 }, // 重要景点对应的层级
+        { level: 9, minZoom: 8 }
       ],
       textLevelRules: [
         { level: 1, minZoom: 0 },
@@ -195,28 +213,46 @@
     function mergeConfig(base, override) {
       const o = override ?? {};
       const merged = { ...base, ...o };
-      merged.tiles = { ...base.tiles, ...o.tiles };
-      merged.image = { ...base.image, ...o.image };
-      merged.coord = { ...base.coord, ...o.coord };
-      merged.zoom = { ...base.zoom, ...o.zoom };
-      merged.view = { ...base.view, ...o.view };
-      merged.hud = { ...base.hud, ...o.hud };
+      merged.tiles = { ...(base.tiles ?? {}), ...(o.tiles ?? {}) };
+      merged.image = { ...(base.image ?? {}), ...(o.image ?? {}) };
+      merged.coord = { ...(base.coord ?? {}), ...(o.coord ?? {}) };
+      merged.zoom = { ...(base.zoom ?? {}), ...(o.zoom ?? {}) };
+      merged.view = { ...(base.view ?? {}), ...(o.view ?? {}) };
+      merged.hud = { ...(base.hud ?? {}), ...(o.hud ?? {}) };
       merged.roadLevelRules = o.roadLevelRules ?? base.roadLevelRules;
       merged.markerLevelRules = o.markerLevelRules ?? base.markerLevelRules;
       merged.textLevelRules = o.textLevelRules ?? base.textLevelRules;
       return merged;
     }
 
-    async function loadExternalConfig() {
-      try {
-        const res = await fetch("./tiles.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`tiles.json status ${res.status}`);
-        const json = await res.json();
-        return mergeConfig(DEFAULT_CONFIG, json);
-      } catch (err) {
-        console.warn("[map] tiles.json 未加载，使用内置默认配置。", err);
-        return DEFAULT_CONFIG;
+    function normalizeConfig(cfg) {
+      cfg.tiles = cfg.tiles ?? {};
+      const required = ["urlTemplate", "tileSize", "minZoom", "maxZoom"];
+      for (const k of required) {
+        if (cfg.tiles[k] === undefined || cfg.tiles[k] === null) {
+          throw new Error(`tiles.${k} missing in tiles.json`);
+        }
       }
+      if (cfg.tiles.tms === undefined) cfg.tiles.tms = false;
+      if (cfg.tiles.opacity === undefined) cfg.tiles.opacity = 1.0;
+      if (cfg.tiles.keepBuffer === undefined) cfg.tiles.keepBuffer = 2;
+      if (cfg.tiles.updateWhenIdle === undefined) cfg.tiles.updateWhenIdle = true;
+      if (cfg.tiles.updateWhenZooming === undefined) cfg.tiles.updateWhenZooming = false;
+
+      cfg.zoom = cfg.zoom ?? {};
+      if (cfg.zoom.min === undefined) cfg.zoom.min = cfg.tiles.minZoom;
+      if (cfg.zoom.max === undefined) cfg.zoom.max = cfg.tiles.maxZoom;
+      if (cfg.zoom.min > cfg.zoom.max) {
+        throw new Error(`zoom.min(${cfg.zoom.min}) > zoom.max(${cfg.zoom.max})`);
+      }
+      return cfg;
+    }
+
+    async function loadExternalConfig() {
+      const res = await fetch("./tiles.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(`tiles.json status ${res.status}`);
+      const json = await res.json();
+      return normalizeConfig(mergeConfig(DEFAULT_CONFIG, json));
     }
 
     function getImageScale() {
@@ -270,17 +306,20 @@
        */
       const baseTiles = L.tileLayer(CONFIG.tiles.urlTemplate, {
         tileSize: CONFIG.tiles.tileSize,
-        minZoom: CONFIG.tiles.minZoom,
-        maxZoom: CONFIG.tiles.maxZoom,
+        // Display zoom range can be wider than native tile range.
+        minZoom: CONFIG.zoom.min,
+        maxZoom: CONFIG.zoom.max,
+        minNativeZoom: CONFIG.tiles.minZoom,
+        maxNativeZoom: CONFIG.tiles.maxZoom,
         bounds: imageBounds,
         noWrap: true,
         opacity: CONFIG.tiles.opacity,
         tms: CONFIG.tiles.tms,
 
         // 体验优化（可选）
-        keepBuffer: 2,
-        updateWhenIdle: true,
-        updateWhenZooming: false
+        keepBuffer: CONFIG.tiles.keepBuffer,
+        updateWhenIdle: CONFIG.tiles.updateWhenIdle,
+        updateWhenZooming: CONFIG.tiles.updateWhenZooming
       });
       baseTiles.addTo(map);
 
@@ -355,6 +394,61 @@
         .replaceAll("'", "&#039;");
     }
 
+    function cssLength(v) {
+      if (typeof v === "number" && Number.isFinite(v)) return `${v}px`;
+      if (typeof v === "string" && v.trim()) return v.trim();
+      return "";
+    }
+
+    function buildTextFragStyle(seg) {
+      const parts = [];
+      const color = typeof seg.color === "string" ? seg.color.trim() : "";
+      const size = cssLength(seg.font_size ?? seg.fontSize ?? seg.size);
+      const weight = seg.font_weight ?? seg.fontWeight ?? seg.weight;
+      const lineHeight = cssLength(seg.line_height ?? seg.lineHeight);
+      const letterSpacing = cssLength(seg.letter_spacing ?? seg.letterSpacing);
+
+      if (color) parts.push(`color:${escapeHtml(color)}`);
+      if (size) parts.push(`font-size:${escapeHtml(size)}`);
+      if (weight !== undefined && weight !== null && `${weight}` !== "") {
+        parts.push(`font-weight:${escapeHtml(String(weight))}`);
+      }
+      if (lineHeight) parts.push(`line-height:${escapeHtml(lineHeight)}`);
+      if (letterSpacing) parts.push(`letter-spacing:${escapeHtml(letterSpacing)}`);
+      if (seg.italic === true) parts.push("font-style:italic");
+      if (seg.underline === true) parts.push("text-decoration:underline");
+      return parts.join(";");
+    }
+
+    // Rich text rendering for map labels:
+    // 1) plain `text` uses \n as line breaks
+    // 2) optional `rich_text` array supports per-fragment style + explicit line breaks
+    function renderTextContent(textSpec) {
+      const rich = Array.isArray(textSpec?.rich_text) ? textSpec.rich_text : null;
+      if (!rich || rich.length === 0) {
+        const plain = escapeHtml(textSpec?.text ?? textSpec?.name ?? "");
+        return `<span class="map-text-content">${plain}</span>`;
+      }
+
+      const html = [];
+      for (const seg of rich) {
+        if (seg == null) continue;
+        if (typeof seg === "string") {
+          html.push(`<span class="map-text-frag">${escapeHtml(seg)}</span>`);
+          continue;
+        }
+        if (seg.br === true || seg.newline === true) {
+          html.push("<br>");
+          continue;
+        }
+        const text = escapeHtml(seg.text ?? "");
+        const style = buildTextFragStyle(seg);
+        const styleAttr = style ? ` style="${style}"` : "";
+        html.push(`<span class="map-text-frag"${styleAttr}>${text}</span>`);
+      }
+      return `<span class="map-text-content">${html.join("")}</span>`;
+    }
+
     function updateSidebarIcon(markerData) {
       if (!sidebarIcon) return;
       const iconSpec = markerData?.icon ?? {};
@@ -371,6 +465,21 @@
       sidebarIcon.hidden = true;
     }
 
+    // Optional sidebar image field in info:
+    // info.photo = "./assets/photos/xxx.jpg" (recommended path under assets/photos)
+    function renderSidebarPhotoHtml(info, title = "图片") {
+      const photo = typeof info?.photo === "string" ? info.photo.trim() : "";
+      if (!photo) return "";
+      const alt = typeof info?.photoAlt === "string" && info.photoAlt.trim()
+        ? info.photoAlt.trim()
+        : title;
+      return `
+        <div class="sidebar-photo-wrap">
+          <img class="sidebar-photo" src="${escapeHtml(photo)}" alt="${escapeHtml(alt)}" loading="lazy" />
+        </div>
+      `;
+    }
+
     function showMarkerInSidebar(markerData) {
       setSidebarVisible(true);
       sidebarTitle.textContent = markerData.name;
@@ -381,6 +490,7 @@
       const tags = Array.isArray(info.tags) ? info.tags : [];
       const desc = escapeHtml(info.description ?? "—").replace(/\n/g, "<br>");
       const loca = escapeHtml(info.location ?? "—").replace(/\n/g, "<br>");
+      const photoHtml = renderSidebarPhotoHtml(info, `${markerData.name ?? "标记"} 图片`);
 
       sidebarBody.innerHTML = `
       <div style="display:flex; flex-direction:column; gap:5px;">
@@ -391,6 +501,7 @@
         </div>
 
         <div style="font-size:16px; color:#676c71; font-weight:normal; padding:8px 8px;">${desc}</div>
+        ${photoHtml}
 
       </div>
       `;
@@ -433,6 +544,7 @@
       const info = textData.info ?? {};
       const desc = escapeHtml(info.description ?? textData.text ?? "—").replace(/\n/g, "<br>");
       const loca = escapeHtml(info.location ?? "—").replace(/\n/g, "<br>");
+      const photoHtml = renderSidebarPhotoHtml(info, `${textData.name ?? "文字"} 图片`);
 
       sidebarBody.innerHTML = `
       <div style="display:flex; flex-direction:column; gap:5px;">
@@ -441,6 +553,7 @@
           <div style="font-size:16px; color:#676c71;">${loca}</div>
         </div>
         <div style="font-size:16px; color:#676c71; font-weight:normal; padding:8px 8px;">${desc}</div>
+        ${photoHtml}
       </div>
       `;
     }
@@ -459,6 +572,7 @@
      * =====================================================
      */
     const roadLayersByLevel = new Map();
+    const roadObjects = [];
 
     function initRoadLayers() {
       for (const rule of CONFIG.roadLevelRules) {
@@ -476,7 +590,10 @@
         polyline.bindTooltip(`${r.name} (L${r.level})`, { sticky: true });
 
         const group = roadLayersByLevel.get(r.level);
-        if (group) group.addLayer(polyline);
+        if (group) {
+          group.addLayer(polyline);
+          roadObjects.push({ data: r, polyline, group });
+        }
       }
     }
 
@@ -491,6 +608,15 @@
         const onMap = map.hasLayer(group);
         if (shouldShow && !onMap) group.addTo(map);
         if (!shouldShow && onMap) map.removeLayer(group);
+      }
+
+      // Per-road zoom interval filter (inclusive): min_zoom <= z <= max_zoom.
+      for (const obj of roadObjects) {
+        const { data, polyline, group } = obj;
+        const intervalVisible = isItemVisibleAtZoom(data, z);
+        const hasLine = group.hasLayer(polyline);
+        if (intervalVisible && !hasLine) group.addLayer(polyline);
+        if (!intervalVisible && hasLine) group.removeLayer(polyline);
       }
     }
 
@@ -542,7 +668,7 @@
         } else {
           leafletMarker.addTo(map);
         }
-        markerObjects.push({ data: m, leafletMarker });
+        markerObjects.push({ data: m, leafletMarker, group: group ?? null });
       }
     }
 
@@ -556,6 +682,17 @@
         const onMap = map.hasLayer(group);
         if (shouldShow && !onMap) group.addTo(map);
         if (!shouldShow && onMap) map.removeLayer(group);
+      }
+
+      // Per-marker zoom interval filter (inclusive): min_zoom <= z <= max_zoom.
+      for (const obj of markerObjects) {
+        const { data, leafletMarker, group } = obj;
+        const intervalVisible = isItemVisibleAtZoom(data, z);
+        const container = group ?? map;
+        if (!container) continue;
+        const hasMarker = container.hasLayer(leafletMarker);
+        if (intervalVisible && !hasMarker) container.addLayer(leafletMarker);
+        if (!intervalVisible && hasMarker) container.removeLayer(leafletMarker);
       }
     }
 
@@ -575,16 +712,28 @@
       }
     }
 
+    // Leaflet divIcon for text labels. CSS classes used for rendering:
+    // - .map-text-label   (outer layout / anchor transform)
+    // - .map-text-content (manual line break behavior + center alignment)
+    // - .map-text-frag    (per-fragment inline style target)
     function createTextIcon(textSpec) {
-      const label = escapeHtml(textSpec.text ?? textSpec.name ?? "");
+      const label = renderTextContent(textSpec);
       const badge = textSpec.badge === false ? "" : `<span class="badge"></span>`;
-      const html = `<span class="map-text-label">${badge}<span>${label}</span></span>`;
+      const html = `<span class="map-text-label">${badge}${label}</span>`;
       return L.divIcon({
         html,
         className: "",
         iconSize: textSpec.size ?? null,
         iconAnchor: textSpec.anchor ?? [0, 0]
       });
+    }
+
+    function isItemVisibleAtZoom(spec, z) {
+      const minZoom = Number(spec?.min_zoom);
+      const maxZoom = Number(spec?.max_zoom);
+      if (Number.isFinite(minZoom) && z < minZoom) return false;
+      if (Number.isFinite(maxZoom) && z > maxZoom) return false;
+      return true;
     }
 
     function initTexts() {
@@ -602,7 +751,7 @@
         } else {
           textMarker.addTo(map);
         }
-        textObjects.push({ data: t, textMarker });
+        textObjects.push({ data: t, textMarker, group: group ?? null });
       }
     }
 
@@ -616,6 +765,17 @@
         const onMap = map.hasLayer(group);
         if (shouldShow && !onMap) group.addTo(map);
         if (!shouldShow && onMap) map.removeLayer(group);
+      }
+
+      // Per-text zoom interval filter (inclusive): min_zoom <= z <= max_zoom.
+      for (const obj of textObjects) {
+        const { data, textMarker, group } = obj;
+        const intervalVisible = isItemVisibleAtZoom(data, z);
+        const container = group ?? map;
+        if (!container) continue;
+        const hasMarker = container.hasLayer(textMarker);
+        if (intervalVisible && !hasMarker) container.addLayer(textMarker);
+        if (!intervalVisible && hasMarker) container.removeLayer(textMarker);
       }
     }
 
@@ -684,7 +844,13 @@
     }
 
     async function initApp() {
-      CONFIG = await loadExternalConfig();
+      try {
+        CONFIG = await loadExternalConfig();
+      } catch (err) {
+        console.error("[map] tiles.json 加载失败或配置不完整。", err);
+        alert("tiles.json 加载失败或配置不完整，请检查控制台。");
+        return;
+      }
       initMap();
       setHudVisible();
       bindMapEvents();
