@@ -58,8 +58,58 @@ window.markers = [
       size: [33.08, 28.8],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
       anchor: [16.54, 28.8]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
     },
-    info: { type: "Marker", description: "占位符", tags: ["demo"], updatedAt: "2026-01-08", location: "昆明市 · 五华区"  }
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["demo"], 
+      updatedAt: "2026-01-08", 
+      location: "昆明市 · 五华区"  
+    }
   },
+
+  {
+    id: "xiaogangaozhong",
+    name: "孝感高中",
+    level: 8,
+    x: 12780, y: 8856, // 图标位置（像素坐标）
+    min_zoom: 7,   // 可选：最小显示缩放
+    icon: {
+      url: "./assets/xiaogangaozhong.png",
+      size: [40, 40],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [20, 20]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["demo"], 
+      updatedAt: "2026-01-08", 
+      location: "孝感市 · 孝南区"  
+    }
+  },
+  {
+    id: "whu",
+    name: "武汉大学",
+    level: 8,
+    x: 12918, y: 8729, // 图标位置（像素坐标）
+    min_zoom: 7,   // 可选：最小显示缩放
+    icon: {
+      url: "./assets/whu.png",
+      size: [45, 26],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [25.5, 26]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["demo"], 
+      updatedAt: "2026-01-08", 
+      location: "武汉市 · 武昌区"  
+    }
+  },
+
+
+
+
+
 
 // ******************* 地级中心 *******************
 
@@ -75,29 +125,95 @@ window.markers = [
       size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
       anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
     },
-    info: { type: "Marker", description: "北倚燕山余脉，西承太行屏障，南向华北平原徐徐铺展，北京安坐于山川收束与大地开阔的交界处，大自然在此设下经略四方的格局。\n 城市中轴线如一条缓缓展开的时间之线，自紫禁城的屋脊延伸至天安门广场的开阔空间，王朝的秩序与时代的叙事在此交汇；未名湖畔，燕园静立，书声在林影与旧楼之间回荡，思想悄然生长；远望城郊，群山起伏，古关与驿道隐没在岁月之中，静静诉说往昔。山河依旧、人事却不断更替，这座城市究竟是在被时间塑造，还是在与时间对话？", tags: ["info","panel"], updatedAt: "2026-01-08", location: "北京市" }
+    info: { 
+      type: "Marker", 
+      description: "北倚燕山余脉，西承太行屏障，南向华北平原徐徐铺展，北京安坐于山川收束与大地开阔的交界处，大自然在此设下经略四方的格局。\n 城市中轴线如一条缓缓展开的时间之线，自紫禁城的屋脊延伸至天安门广场的开阔空间，王朝的秩序与时代的叙事在此交汇；未名湖畔，燕园静立，书声在林影与旧楼之间回荡，思想悄然生长；远望城郊，群山起伏，古关与驿道隐没在岁月之中，静静诉说往昔。山河依旧、人事却不断更替，这座城市究竟是在被时间塑造，还是在与时间对话？", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "北京市" 
+    }
   },
-
   {
-    id: "dali",
-    name: "大理",
+    id: "tianjin",
+    name: "天津",
     level: 1,
-    x: 8765, y: 7275,
+    x: 13750, y: 11268,
     min_zoom: 5,   // 可选：最小显示缩放
-    max_zoom: 9,   // 可选：最大显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
     icon: {
       url: "./assets/city_center.png",
       size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
       anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
     },
-    info: { type: "Marker", 
-      description: "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。", 
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
       tags: ["info","panel"], 
       updatedAt: "2026-01-08", 
-      photo: "./assets/photos/dali.jpg",
-      location: "云南省 · 大理市"  }
+      location: "天津市 " 
+    }
   },
-    {
+  {
+    id: "langfang",
+    name: "廊坊",
+    level: 1,
+    x: 13569, y: 11382,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "河北省 · 廊坊市" 
+    }
+  },
+  {
+    id: "baoding",
+    name: "保定",
+    level: 1,
+    x: 13294, y: 11128,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "河北省 · 保定市" 
+    }
+  },
+  {
+    id: "zhangjiakou",
+    name: "张家口",
+    level: 1,
+    x: 13060, y: 11724,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "河北省 · 张家口市" 
+    }
+  },
+  {
     id: "kunming",
     name: "昆明",
     level: 5,
@@ -116,6 +232,144 @@ window.markers = [
       updatedAt: "2026-01-08", 
       location: "云南省 · 昆明市"  
     }
-  }
-
+  },
+  {
+    id: "dali",
+    name: "大理",
+    level: 1,
+    x: 8765, y: 7275,
+    min_zoom: 5,   // 可选：最小显示缩放
+    max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { type: "Marker", 
+      description: "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      photo: "./assets/photos/dali.jpg",
+      location: "云南省 · 大理白族自治州"  }
+  },
+  {
+    id: "nanchang",
+    name: "南昌",
+    level: 1,
+    x: 13341, y: 8153,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "江西省 · 南昌市" 
+    }
+  },
+  {
+    id: "jingdezhen",
+    name: "景德镇",
+    level: 1,
+    x: 13767, y: 8373,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "江西省 · 景德镇市" 
+    }
+  },
+  {
+    id: "hefei",
+    name: "合肥",
+    level: 1,
+    x: 13788, y: 9096,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "安徽省 · 合肥市" 
+    }
+  },
+  {
+    id: "wuhan",
+    name: "武汉",
+    level: 1,
+    x: 12938, y: 8758,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "湖北省 · 武汉市" 
+    }
+  },
+  {
+    id: "xiaogan",
+    name: "孝感",
+    level: 1,
+    x: 12795, y: 8852,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "湖北省 · 孝感市" 
+    }
+  },
+  {
+    id: "hanchuan",
+    name: "汉川",
+    level: 1,
+    x: 12766, y: 8765,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "湖北省 · 汉川市" 
+    }
+  },
 ];
