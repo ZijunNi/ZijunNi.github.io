@@ -49,7 +49,7 @@ window.markers = [
   },
   {
     id: "yunshifuzhong",
-    name: "云师附中",
+    name: "云南师大附中",
     level: 8,
     x: 9465, y: 7129, // 图标位置（像素坐标）
     min_zoom: 7,   // 可选：最小显示缩放
@@ -60,7 +60,7 @@ window.markers = [
     },
     info: { 
       type: "Marker", 
-      description: "占位符", 
+      description: "“满眼是烽烟炮火，满眼是流离颠簸”，它的前身联大附中曾经难寻一方安静的书桌。数十载光阴飞逝，战争的硝烟消散无踪。现代化的教室窗明几净，“先学会做人，再学做学问”的箴言却从未被遗忘。", 
       tags: ["demo"], 
       updatedAt: "2026-01-08", 
       location: "昆明市 · 五华区"  
