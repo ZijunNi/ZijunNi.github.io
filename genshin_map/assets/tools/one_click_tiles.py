@@ -6,6 +6,7 @@
 # python3 genshin_map/assets/tools/one_click_tiles.py --image genshin_map/assets/whole.png --tile-size 256
 # 这会生成 genshin_map/assets/tiles 目录，并更新 genshin_map/tiles.json 中的相关字段。
 # 注意：实际的可缩放范围和真实存在的瓦片级别已经解耦，在tiles.json中的zoom字段可以单独配置最大最小的缩放范围，而不受生成的瓦片级别限制（但不能超过自然的最大级别）。如果需要调整生成的瓦片级别范围，可以修改代码中FIXED_TILE_MIN_ZOOM和FIXED_TILE_MAX_ZOOM常量。
+# 注意：目前本脚本的默认不更新tiles.json，如果需要更新可以加上 --update-json 参数。
 
 from __future__ import annotations
 
@@ -251,9 +252,9 @@ def main() -> None:
         help="Do not remove existing tiles output directory.",
     )
     ap.add_argument(
-        "--no-update-json",
-        action="store_true",
-        help="Do not update tiles.json.",
+        "--update-json",
+        action="store_false",
+        help="Update tiles.json (default is not to update).",
     )
     args = ap.parse_args()
 
@@ -343,7 +344,7 @@ def main() -> None:
             if FIXED_TILE_MAX_ZOOM is None:
                 zoom_max = fit_zoom_int
 
-    if not args.no_update_json:
+    if args.update_json:
         if not tiles_json.exists():
             raise SystemExit(f"tiles.json not found: {tiles_json}")
         update_tiles_json(

@@ -154,6 +154,26 @@ window.markers = [
     }
   },
   {
+    id: "datong",
+    name: "大同",
+    level: 1,
+    x: 12635.5, y: 11509,
+    min_zoom: 5,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/city_center.png",
+      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "山西省 · 大同市" 
+    }
+  },
+  {
     id: "langfang",
     name: "廊坊",
     level: 1,
