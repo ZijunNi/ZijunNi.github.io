@@ -433,5 +433,28 @@ window.markers = [
       updatedAt: "2026-01-08", 
       location: "黑龙江省 · 佳木斯市" 
     }
+  },
+
+// ******************* 传送点 *******************
+    {
+    id: "yanjiao",
+    name: "燕郊",
+    level: 1,
+    x: 13404, y: 11220,
+    min_zoom: 7,   // 可选：最小显示缩放
+    // max_zoom: 9,   // 可选：最大显示缩放
+    icon: {
+      url: "./assets/anchor.png",
+      size: [20.06, 30.62],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
+      anchor: [10.03, 30.92]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    },
+    info: { 
+      type: "Marker", 
+      description: "占位符", 
+      tags: ["info","panel"], 
+      updatedAt: "2026-01-08", 
+      location: "河北省 · 廊坊市" 
+    }
   }
+
 ];
