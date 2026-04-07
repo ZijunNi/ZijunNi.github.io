@@ -785,6 +785,7 @@
      * =====================================================
      */
     const hud = document.getElementById("hud");
+    const HUD_COORD_DECIMALS = 2;
 
     function isHudEnabled() {
       return CONFIG?.hud?.visible !== false;
@@ -804,12 +805,14 @@
       const markerRulesText = CONFIG.markerLevelRules.map(r => `L${r.level}: zoom ≥ ${r.minZoom}`).join(", ");
       const origin = CONFIG.image.origin ?? { x: 0, y: 0 };
       const scale = getImageScale();
+      const centerX = centerPx.x.toFixed(HUD_COORD_DECIMALS);
+      const centerY = centerPx.y.toFixed(HUD_COORD_DECIMALS);
 
       hud.innerHTML = `
         <div><strong>坐标系：</strong><code>CRS.Simple</code>（平面/像素坐标）</div>
         <div><strong>底图：</strong>瓦片 <code>{z}/{x}/{y}</code>，tileSize=<code>${CONFIG.tiles.tileSize}</code>，tms=<code>${CONFIG.tiles.tms}</code></div>
         <div><strong>当前视图：</strong>zoom = <code>${z}</code>,
-          center = <code>x=${centerPx.x.toFixed(1)}, y=${centerPx.y.toFixed(1)}</code></div>
+          center = <code>x=${centerX}, y=${centerY}</code></div>
         <div><strong>道路显示规则：</strong>${escapeHtml(rulesText)}</div>
         <div><strong>标记显示规则：</strong>${escapeHtml(markerRulesText)}</div>
         <div style="color:#666;margin-top:6px;">原图尺寸：<code>${CONFIG.image.width}×${CONFIG.image.height}</code>（像素）</div>
@@ -818,10 +821,33 @@
       `;
     }
 
+    // Convert pointer event position to map pixel coordinates for HUD display.
+    // This path uses container/layer points directly to avoid extra quantization
+    // through event.latlng conversion.
+    function mouseEventToPixelForHud(e) {
+      if (!map) return null;
+      const cp = e?.containerPoint ?? (e?.originalEvent ? map.mouseEventToContainerPoint(e.originalEvent) : null);
+      if (!cp) return null;
+
+      const layerPoint = map.containerPointToLayerPoint(cp);
+      const projectedAtCurrentZoom = layerPoint.add(map.getPixelOrigin());
+      const scaleToMaxTileZoom = map.getZoomScale(maxTileZoom, map.getZoom());
+      const projected = projectedAtCurrentZoom.multiplyBy(scaleToMaxTileZoom);
+
+      const scale = getImageScale();
+      const origin = CONFIG.image.origin ?? { x: 0, y: 0 };
+      const pyRaw = CONFIG.coord.flipY ? (CONFIG.image.height - projected.y) : projected.y;
+      return {
+        x: (projected.x - origin.x) / scale,
+        y: (pyRaw - origin.y) / scale
+      };
+    }
+
     function bindMapEvents() {
       map.on("mousemove", (e) => {
-        const px = toPixel(e.latlng);
-        refreshHud(`x=${px.x.toFixed(1)}, y=${px.y.toFixed(1)}`);
+        const px = mouseEventToPixelForHud(e);
+        if (!px) return;
+        refreshHud(`x=${px.x.toFixed(HUD_COORD_DECIMALS)}, y=${px.y.toFixed(HUD_COORD_DECIMALS)}`);
       });
 
       map.on("click", () => {
