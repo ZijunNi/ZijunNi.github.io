@@ -1,460 +1,636 @@
-// 标记分级显示规则（文字和图表均按此规则）
-//   { level: 1, minZoom: 0 }, // 目前未启用的层级
-//   { level: 2, minZoom: 1 }, // 目前未启用的层级
-//   { level: 3, minZoom: 2 }, // 目前未启用的层级
-//   { level: 4, minZoom: 3 }, // 目前未启用的层级
-//   { level: 5, minZoom: 4 }, // 仅显示省级地名的层级
-//   { level: 6, minZoom: 5 }, // 地级区域中心神像对应的层级，此级别(4.5以下)开始省级地名不显示
-//   { level: 7, minZoom: 6 }, // 地级区域文字、传送锚点显示对应的层级
-//   { level: 8, minZoom: 7 }, // 重要景点对应的层级
-//   { level: 9, minZoom: 8 }
-
 window.markers = [
-
-// ******************* 景点 *******************
   {
-    id: "great_wall",
-    name: "八达岭长城",
-    level: 3, // 最大显示层级数+1，低于这个层级才会显示
-    x: 13408, y: 11594, // 图标位置（像素坐标）
-    min_zoom: 7,   // 可选：最小显示缩放
-    icon: {
-      // 方式1：图片图标（png/svg/jpg）。如果你有 marker.png 放同目录，可启用：
-      url: "./assets/great_wall.png",
-      size: [34, 27],  // 显示在地图中的图标尺寸（像素，注意等比例缩放，参考大小30x30）
-      anchor: [17, 13.5]// 图标锚点
-      // （图标左上角为[0,0]，锚点位置决定图标的定位点，对于30x30的图标，下边缘中点作为锚点时应为[15, 30]）
-
-      // 方式2：divIcon（不依赖图片）——默认使用这个保证可运行
-      // divIcon: true,
-      // html: `<div style="
-      //   width:18px;height:18px;border-radius:999px;
-      //   background:#111;border:3px solid #fff;
-      //   box-shadow:0 6px 14px rgba(0,0,0,0.25);
-      // "></div>`,
-      // size: [18, 18],
-      // anchor: [9, 9]
+    "id": "great_wall",
+    "name": "八达岭长城",
+    "level": 8,
+    "x": 13408.0,
+    "y": 11594.0,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/great_wall.png",
+      "size": [
+        34.0,
+        27.0
+      ],
+      "anchor": [
+        17.0,
+        13.5
+      ]
     },
-    info: { 
-      type: "Marker", 
-      location: "北京市 · 延庆区" ,
-      description: "示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）", 
-      // 可选：侧边栏描述下方图片（建议放在 ./assets/photos/ 下）
-      // photo: "./assets/photos/badaling.jpg",
-      // 可选：图片 alt 文本
-      // photoAlt: "八达岭长城",
-      tags: ["demo"], 
-      updatedAt: "2026-01-08"
+    "info": {
+      "type": "land_mark",
+      "description": "示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "北京市 · 延庆区"
     }
   },
   {
-    id: "yunshifuzhong",
-    name: "云南师大附中",
-    level: 8,
-    x: 9465, y: 7129, // 图标位置（像素坐标）
-    min_zoom: 7,   // 可选：最小显示缩放
-    icon: {
-      url: "./assets/yunshifuzhong.png",
-      size: [33.08, 28.8],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [16.54, 28.8]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "yunshifuzhong",
+    "name": "云南师大附中",
+    "level": 8,
+    "x": 9465.0,
+    "y": 7129.0,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/yunshifuzhong.png",
+      "size": [
+        33.08,
+        28.8
+      ],
+      "anchor": [
+        16.54,
+        28.8
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "“满眼是烽烟炮火，满眼是流离颠簸”，它的前身联大附中曾经难寻一方安静的书桌。数十载光阴飞逝，战争的硝烟消散无踪。现代化的教室窗明几净，“先学会做人，再学做学问”的箴言却从未被遗忘。", 
-      tags: ["demo"], 
-      updatedAt: "2026-01-08", 
-      location: "昆明市 · 五华区"  
-    }
-  },
-
-  {
-    id: "xiaogangaozhong",
-    name: "孝感高中",
-    level: 8,
-    x: 12780, y: 8856, // 图标位置（像素坐标）
-    min_zoom: 7,   // 可选：最小显示缩放
-    icon: {
-      url: "./assets/xiaogangaozhong.png",
-      size: [40, 40],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [20, 20]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
-    },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["demo"], 
-      updatedAt: "2026-01-08", 
-      location: "孝感市 · 孝南区"  
+    "info": {
+      "type": "land_mark",
+      "description": "“满眼是烽烟炮火，满眼是流离颠簸”，它的前身联大附中曾经难寻一方安静的书桌。数十载光阴飞逝，战争的硝烟消散无踪。现代化的教室窗明几净，“先学会做人，再学做学问”的箴言却从未被遗忘。",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "昆明市 · 五华区"
     }
   },
   {
-    id: "whu",
-    name: "武汉大学",
-    level: 8,
-    x: 12918, y: 8729, // 图标位置（像素坐标）
-    min_zoom: 7,   // 可选：最小显示缩放
-    icon: {
-      url: "./assets/whu.png",
-      size: [45, 26],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [25.5, 26]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "xiaogangaozhong",
+    "name": "孝感高中",
+    "level": 8,
+    "x": 12780.0,
+    "y": 8856.0,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/xiaogangaozhong.png",
+      "size": [
+        40.0,
+        40.0
+      ],
+      "anchor": [
+        20.0,
+        20.0
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["demo"], 
-      updatedAt: "2026-01-08", 
-      location: "武汉市 · 武昌区"  
-    }
-  },
-
-
-
-
-
-
-// ******************* 地级中心 *******************
-
-  {
-    id: "beijing",
-    name: "北京",
-    level: 1,
-    x: 13489, y: 11473,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
-    },
-    info: { 
-      type: "Marker", 
-      description: "北倚燕山余脉，西承太行屏障，南向华北平原徐徐铺展，北京安坐于山川收束与大地开阔的交界处，大自然在此设下经略四方的格局。\n 城市中轴线如一条缓缓展开的时间之线，自紫禁城的屋脊延伸至天安门广场的开阔空间，王朝的秩序与时代的叙事在此交汇；未名湖畔，燕园静立，书声在林影与旧楼之间回荡，思想悄然生长；远望城郊，群山起伏，古关与驿道隐没在岁月之中，静静诉说往昔。山河依旧、人事却不断更替，这座城市究竟是在被时间塑造，还是在与时间对话？", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "北京市" 
+    "info": {
+      "type": "land_mark",
+      "description": "占位符",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "孝感市 · 孝南区"
     }
   },
   {
-    id: "tianjin",
-    name: "天津",
-    level: 1,
-    x: 13750, y: 11268,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "whu",
+    "name": "武汉大学",
+    "level": 8,
+    "x": 12918.0,
+    "y": 8729.0,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/whu.png",
+      "size": [
+        45.0,
+        26.0
+      ],
+      "anchor": [
+        25.5,
+        26.0
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "天津市 " 
+    "info": {
+      "type": "land_mark",
+      "description": "占位符",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "武汉市 · 武昌区"
     }
   },
   {
-    id: "datong",
-    name: "大同",
-    level: 1,
-    x: 12635.5, y: 11509,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "beijing",
+    "name": "北京",
+    "level": 1,
+    "x": 13489.0,
+    "y": 11473.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "山西省 · 大同市" 
+    "info": {
+      "type": "city_center",
+      "description": "北倚燕山余脉，西承太行屏障，南向华北平原徐徐铺展，北京安坐于山川收束与大地开阔的交界处，大自然在此设下经略四方的格局。\n 城市中轴线如一条缓缓展开的时间之线，自紫禁城的屋脊延伸至天安门广场的开阔空间，王朝的秩序与时代的叙事在此交汇；未名湖畔，燕园静立，书声在林影与旧楼之间回荡，思想悄然生长；远望城郊，群山起伏，古关与驿道隐没在岁月之中，静静诉说往昔。山河依旧、人事却不断更替，这座城市究竟是在被时间塑造，还是在与时间对话？",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "北京市"
     }
   },
   {
-    id: "langfang",
-    name: "廊坊",
-    level: 1,
-    x: 13569, y: 11382,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "tianjin",
+    "name": "天津",
+    "level": 1,
+    "x": 13750.0,
+    "y": 11268.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "河北省 · 廊坊市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "天津市"
     }
   },
   {
-    id: "baoding",
-    name: "保定",
-    level: 1,
-    x: 13294, y: 11128,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "datong",
+    "name": "大同",
+    "level": 1,
+    "x": 12635.5,
+    "y": 11509.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "河北省 · 保定市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "山西省 · 大同市"
     }
   },
   {
-    id: "zhangjiakou",
-    name: "张家口",
-    level: 1,
-    x: 13060, y: 11724,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "langfang",
+    "name": "廊坊",
+    "level": 1,
+    "x": 13569.0,
+    "y": 11382.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "河北省 · 张家口市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "河北省 · 廊坊市"
     }
   },
   {
-    id: "kunming",
-    name: "昆明",
-    level: 5,
-    x: 9525, y: 7065,
-    min_zoom: 5,   // 可选：最小显示缩放
-    max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "baoding",
+    "name": "保定",
+    "level": 1,
+    "x": 13294.0,
+    "y": 11128.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "南拥滇池烟波，东枕金马晴岚，西倚碧鸡苍翠，北收乌蒙余势，昆明坐落于高原台地与湖泊襟怀之间。\n翠湖波光如散落的旧笺，海鸥年年衔来远方的消息，讲武堂的黄墙沉默伫立，共和的初啼曾在此划破晨雾；河山破碎之际，西南联大在春城留下足迹，保留下文明的火种；海晏河清之时，云师附中于故地续写弦歌，传扬着先贤的薪火。春城昆明，向每一位旅者敞开怀抱。", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "云南省 · 昆明市"  
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "河北省 · 保定市"
     }
   },
   {
-    id: "dali",
-    name: "大理",
-    level: 1,
-    x: 8765, y: 7275,
-    min_zoom: 5,   // 可选：最小显示缩放
-    max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "zhangjiakou",
+    "name": "张家口",
+    "level": 1,
+    "x": 13060.0,
+    "y": 11724.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { type: "Marker", 
-      description: "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      photo: "./assets/photos/dali.jpg",
-      location: "云南省 · 大理白族自治州"  }
-  },
-  {
-    id: "nanchang",
-    name: "南昌",
-    level: 1,
-    x: 13341, y: 8153,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
-    },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "江西省 · 南昌市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "河北省 · 张家口市"
     }
   },
   {
-    id: "jingdezhen",
-    name: "景德镇",
-    level: 1,
-    x: 13767, y: 8373,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "kunming",
+    "name": "昆明",
+    "level": 1,
+    "x": 9525.0,
+    "y": 7065.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "江西省 · 景德镇市" 
+    "info": {
+      "type": "city_center",
+      "description": "南拥滇池烟波，东枕金马晴岚，西倚碧鸡苍翠，北收乌蒙余势，昆明坐落于高原台地与湖泊襟怀之间。\n翠湖波光如散落的旧笺，海鸥年年衔来远方的消息，讲武堂的黄墙沉默伫立，共和的初啼曾在此划破晨雾；河山破碎之际，西南联大在春城留下足迹，保留下文明的火种；海晏河清之时，云师附中于故地续写弦歌，传扬着先贤的薪火。春城昆明，向每一位旅者敞开怀抱。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "云南省 · 昆明市"
     }
   },
   {
-    id: "hefei",
-    name: "合肥",
-    level: 1,
-    x: 13788, y: 9096,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "dali",
+    "name": "大理",
+    "level": 1,
+    "x": 8765.0,
+    "y": 7275.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "安徽省 · 合肥市" 
+    "info": {
+      "type": "city_center",
+      "description": "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "云南省 · 大理白族自治州"
     }
   },
   {
-    id: "wuhan",
-    name: "武汉",
-    level: 1,
-    x: 12938, y: 8758,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "nanchang",
+    "name": "南昌",
+    "level": 1,
+    "x": 13341.0,
+    "y": 8153.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "湖北省 · 武汉市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "江西省 · 南昌市"
     }
   },
   {
-    id: "xiaogan",
-    name: "孝感",
-    level: 1,
-    x: 12795, y: 8852,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "jingdezhen",
+    "name": "景德镇",
+    "level": 1,
+    "x": 13767.0,
+    "y": 8373.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "湖北省 · 孝感市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "江西省 · 景德镇市"
     }
   },
   {
-    id: "hanchuan",
-    name: "汉川",
-    level: 1,
-    x: 12766, y: 8765,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "hefei",
+    "name": "合肥",
+    "level": 1,
+    "x": 13788.0,
+    "y": 9096.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "湖北省 · 汉川市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "安徽省 · 合肥市"
     }
   },
-
   {
-    id: "harbin",
-    name: "哈尔滨",
-    level: 1,
-    x: 16546.5, y: 13186.5,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "wuhan",
+    "name": "武汉",
+    "level": 1,
+    "x": 12938.0,
+    "y": 8758.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "黑龙江省 · 哈尔滨市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "湖北省 · 武汉市"
     }
   },
-
   {
-    id: "jiamusi",
-    name: "佳木斯",
-    level: 1,
-    x: 17664, y: 13500,
-    min_zoom: 5,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/city_center.png",
-      size: [26.1, 40.25],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [13.05, 40.25]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+    "id": "xiaogan",
+    "name": "孝感",
+    "level": 1,
+    "x": 12795.0,
+    "y": 8852.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "黑龙江省 · 佳木斯市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "湖北省 · 孝感市"
     }
   },
-
-// ******************* 传送点 *******************
-    {
-    id: "yanjiao",
-    name: "燕郊",
-    level: 1,
-    x: 13404, y: 11220,
-    min_zoom: 7,   // 可选：最小显示缩放
-    // max_zoom: 9,   // 可选：最大显示缩放
-    icon: {
-      url: "./assets/anchor.png",
-      size: [20.06, 30.62],  // 显示在地图中的图标尺寸（像素，注意等比例缩放）
-      anchor: [10.03, 30.92]// 图标锚点（图标左上角为[0,0]，锚点位置决定图标的定位点）
+  {
+    "id": "hanchuan",
+    "name": "汉川",
+    "level": 1,
+    "x": 12766.0,
+    "y": 8765.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
     },
-    info: { 
-      type: "Marker", 
-      description: "占位符", 
-      tags: ["info","panel"], 
-      updatedAt: "2026-01-08", 
-      location: "河北省 · 廊坊市" 
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "湖北省 · 汉川市"
+    }
+  },
+  {
+    "id": "harbin",
+    "name": "哈尔滨",
+    "level": 1,
+    "x": 16546.5,
+    "y": 13186.5,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
+    },
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "黑龙江省 · 哈尔滨市"
+    }
+  },
+  {
+    "id": "jiamusi",
+    "name": "佳木斯",
+    "level": 1,
+    "x": 17664.0,
+    "y": 13500.0,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
+    },
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "黑龙江省 · 佳木斯市"
+    }
+  },
+  {
+    "id": "yanjiao",
+    "name": "雄安新区",
+    "level": 1,
+    "x": 13404.0,
+    "y": 11220.0,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/anchor.png",
+      "size": [
+        20.06,
+        30.62
+      ],
+      "anchor": [
+        10.03,
+        30.92
+      ]
+    },
+    "info": {
+      "type": "anchor",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "河北省 · 保定市"
+    }
+  },
+  {
+    "id": "daxing",
+    "name": "大兴",
+    "level": 1,
+    "x": 13481.5,
+    "y": 11444.8,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/anchor.png",
+      "size": [
+        20.06,
+        30.62
+      ],
+      "anchor": [
+        10.03,
+        30.92
+      ]
+    },
+    "info": {
+      "type": "anchor",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-07",
+      "location": "北京市 · 大兴区"
     }
   }
-
 ];
