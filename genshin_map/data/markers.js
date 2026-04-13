@@ -7,7 +7,7 @@ window.markers = [
     "y": 11594.0,
     "min_zoom": 7.0,
     "icon": {
-      "url": "./assets/great_wall.png",
+      "url": "./assets/special_spot/great_wall.png",
       "size": [
         34.0,
         27.0
@@ -23,7 +23,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "北京市 · 延庆区"
     }
   },
@@ -35,7 +35,7 @@ window.markers = [
     "y": 7129.0,
     "min_zoom": 7.0,
     "icon": {
-      "url": "./assets/yunshifuzhong.png",
+      "url": "./assets/special_spot/yunshifuzhong.png",
       "size": [
         33.08,
         28.8
@@ -51,7 +51,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "昆明市 · 五华区"
     }
   },
@@ -63,7 +63,7 @@ window.markers = [
     "y": 8856.0,
     "min_zoom": 7.0,
     "icon": {
-      "url": "./assets/xiaogangaozhong.png",
+      "url": "./assets/special_spot/xiaogangaozhong.png",
       "size": [
         40.0,
         40.0
@@ -79,7 +79,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "孝感市 · 孝南区"
     }
   },
@@ -87,11 +87,11 @@ window.markers = [
     "id": "whu",
     "name": "武汉大学",
     "level": 8,
-    "x": 12918.0,
-    "y": 8729.0,
+    "x": 12928.16,
+    "y": 8730.0,
     "min_zoom": 7.0,
     "icon": {
-      "url": "./assets/whu.png",
+      "url": "./assets/special_spot/whu.png",
       "size": [
         45.0,
         26.0
@@ -107,7 +107,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "武汉市 · 武昌区"
     }
   },
@@ -136,7 +136,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "北京市"
     }
   },
@@ -165,7 +165,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "天津市"
     }
   },
@@ -194,7 +194,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "山西省 · 大同市"
     }
   },
@@ -223,7 +223,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "河北省 · 廊坊市"
     }
   },
@@ -252,7 +252,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "河北省 · 保定市"
     }
   },
@@ -281,7 +281,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "河北省 · 张家口市"
     }
   },
@@ -310,7 +310,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "云南省 · 昆明市"
     }
   },
@@ -335,11 +335,12 @@ window.markers = [
     "info": {
       "type": "city_center",
       "description": "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。",
+      photo: "./assets/photos/dali.jpg",
       "tags": [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "云南省 · 大理白族自治州"
     }
   },
@@ -368,7 +369,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "江西省 · 南昌市"
     }
   },
@@ -397,7 +398,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "江西省 · 景德镇市"
     }
   },
@@ -426,7 +427,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "安徽省 · 合肥市"
     }
   },
@@ -455,7 +456,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "湖北省 · 武汉市"
     }
   },
@@ -484,7 +485,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "湖北省 · 孝感市"
     }
   },
@@ -513,7 +514,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "湖北省 · 汉川市"
     }
   },
@@ -542,7 +543,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "黑龙江省 · 哈尔滨市"
     }
   },
@@ -571,7 +572,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "黑龙江省 · 佳木斯市"
     }
   },
@@ -600,7 +601,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "河北省 · 保定市"
     }
   },
@@ -629,8 +630,94 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-07",
+      "updatedAt": "2026-04-13",
       "location": "北京市 · 大兴区"
+    }
+  },
+  {
+    "id": "luoyang",
+    "name": "洛阳",
+    "level": 1,
+    "x": 12363.25,
+    "y": 9937.25,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
+    },
+    "info": {
+      "type": "city_center",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-13",
+      "location": "河南省 · 洛阳市"
+    }
+  },
+  {
+    "id": "guohuayuan",
+    "name": "中国国花园",
+    "level": 8,
+    "x": 12358.75,
+    "y": 9922.25,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/special_spot/guohuayuan.png",
+      "size": [
+        45.4,
+        30.6
+      ],
+      "anchor": [
+        22.7,
+        15.3
+      ]
+    },
+    "info": {
+      "type": "land_mark",
+      "description": "唯有牡丹真国色，花开时节动京城。",
+      photo: "./assets/photos/guohuayuan.jpg",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-04-13",
+      "location": "洛阳市 · 洛龙区"
+    }
+  },
+  {
+    "id": "longmenshiku",
+    "name": "龙门石窟",
+    "level": 8,
+    "x": 12369.75,
+    "y": 9900.5,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/special_spot/longmenshiku.png",
+      "size": [
+        36.0,
+        50.0
+      ],
+      "anchor": [
+        18.0,
+        25.0
+      ]
+    },
+    "info": {
+      "type": "land_mark",
+      "description": "占位符",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-04-13",
+      "location": "洛阳市 · 洛龙区"
     }
   }
 ];

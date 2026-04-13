@@ -63,6 +63,28 @@ window.texts = [
     }
   },
   {
+    id: "henan",
+    name: "河南省",
+    level: 1,
+    x: 12678, y: 9650,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "河南省", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "9%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "占位符",
+      location: "河南省",
+      // 可选：侧边栏描述下方图片（建议放在 ./assets/photos/ 下）
+      // photo: "./assets/photos/jingjinji.jpg",
+      // 可选：图片 alt 文本
+      // photoAlt: "京津冀地区示意图"
+    }
+  },
+  {
     id: "yunnan",
     name: "云南省",
     level: 1,
