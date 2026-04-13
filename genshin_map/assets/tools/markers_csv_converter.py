@@ -27,6 +27,21 @@ CSV_COLUMNS = [
     "type",
     "description",
     "location",
+    "photo",
+]
+
+CSV_REQUIRED_COLUMNS = [
+    "id",
+    "name",
+    "x",
+    "y",
+    "min_zoom",
+    "url",
+    "size",
+    "anchor",
+    "type",
+    "description",
+    "location",
 ]
 
 CSV_EXPORT_ENCODING = "utf-8-sig"
@@ -375,6 +390,7 @@ def markers_to_csv(markers_js: Path, csv_path: Path) -> None:
                     "type": marker_type(m),
                     "description": info.get("description", ""),
                     "location": info.get("location", ""),
+                    "photo": info.get("photo", ""),
                 }
             )
 
@@ -382,7 +398,7 @@ def markers_to_csv(markers_js: Path, csv_path: Path) -> None:
 def csv_to_markers(csv_path: Path, markers_js: Path) -> None:
     fieldnames, rows = read_csv_with_fallback(csv_path)
 
-    missing_cols = [col for col in CSV_COLUMNS if col not in fieldnames]
+    missing_cols = [col for col in CSV_REQUIRED_COLUMNS if col not in fieldnames]
     if missing_cols:
         raise ValueError(f"CSV missing columns: {', '.join(missing_cols)}")
 
@@ -422,6 +438,17 @@ def csv_to_markers(csv_path: Path, markers_js: Path) -> None:
 
         description = (row.get("description") or "").strip() or "占位符"
         location = (row.get("location") or "").strip() or "未填写"
+        photo = (row.get("photo") or "").strip()
+
+        info: dict[str, Any] = {
+            "type": mtype,
+            "description": description,
+            "tags": list(defaults["tags"]),
+            "updatedAt": updated_at,
+            "location": location,
+        }
+        if photo:
+            info["photo"] = photo
 
         marker = {
             "id": row_id,
@@ -435,13 +462,7 @@ def csv_to_markers(csv_path: Path, markers_js: Path) -> None:
                 "size": [float(icon_size[0]), float(icon_size[1])],
                 "anchor": [float(icon_anchor[0]), float(icon_anchor[1])],
             },
-            "info": {
-                "type": mtype,
-                "description": description,
-                "tags": list(defaults["tags"]),
-                "updatedAt": updated_at,
-                "location": location,
-            },
+            "info": info,
         }
         markers.append(marker)
 

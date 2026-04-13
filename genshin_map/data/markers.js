@@ -19,12 +19,13 @@ window.markers = [
     },
     "info": {
       "type": "land_mark",
-      "description": "示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）示例标记点 A（坐标：像素）",
+      "description": "北依军都山脊，南瞰京畿平野，八达岭长城踞于燕山与太行交错的山结之上。\n\n城墙将云天与大地、塞外与中原劈作两半。自敌楼的箭窗望出去，千峰沉默，万壑回响，唯有山桃花年年如约。不远处，百年前，詹天佑在山谷里画下“人”字形铁路，钢轨贴着山势缓缓攀爬，为积弱的故土驮来一缕远方的希望；而今，银白色的高速列车在地下深处悄然穿过，为崭新的时代写下无声飞驰的气象。",
       "tags": [
         "demo"
       ],
       "updatedAt": "2026-04-13",
-      "location": "北京市 · 延庆区"
+      "location": "北京市 · 延庆区",
+      "photo": "./assets/photos/badalingchangcheng.jpg"
     }
   },
   {
@@ -335,13 +336,13 @@ window.markers = [
     "info": {
       "type": "city_center",
       "description": "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。",
-      photo: "./assets/photos/dali.jpg",
       "tags": [
         "info",
         "panel"
       ],
       "updatedAt": "2026-04-13",
-      "location": "云南省 · 大理白族自治州"
+      "location": "云南省 · 大理白族自治州",
+      "photo": "./assets/photos/dali.jpg"
     }
   },
   {
@@ -684,12 +685,12 @@ window.markers = [
     "info": {
       "type": "land_mark",
       "description": "唯有牡丹真国色，花开时节动京城。",
-      photo: "./assets/photos/guohuayuan.jpg",
       "tags": [
         "demo"
       ],
       "updatedAt": "2026-04-13",
-      "location": "洛阳市 · 洛龙区"
+      "location": "洛阳市 · 洛龙区",
+      "photo": "./assets/photos/guohuayuan.jpg"
     }
   },
   {
