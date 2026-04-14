@@ -126,7 +126,7 @@
           <img class="sidebar-icon" id="sidebarIcon" alt="" hidden />
           <div class="sidebar-title-text">
             <h2 id="sidebarTitle">夏夏和珺珺的旅行地图</h2>
-            <div class="meta" id="sidebarMeta">地图正在加载中，点击地图上的标记点或文字可以查看详细信息。</div>
+            <div class="meta" id="sidebarMeta"></div> <!-- 此行不可省略 -->
           </div>
         </div>
       <button class="btn" id="clearSelectionBtn" aria-label="关闭">
@@ -135,13 +135,9 @@
       </button>
       </div>
       <div class="sidebar-body" id="sidebarBody">
+        <p>地图正在加载中...点击地图中的空白区域或者右上角按钮可以关闭侧边栏。</p>
         <p>这幅地图展示了夏夏和珺珺的旅行足迹，点击地图上的标记点或文字可以查看详细信息。底图使用<code>ArcGIS</code>软件自行绘制，高程和水系数据来自于公开网络搜集，恕不在此一一列出数据来源。路径数据为作者自行绘制，并不一定与实际路径完全一致。</p>
         <p>特此感谢Bilibili网站UP主<code>@-蒲忒托-</code>提供的<a href="https://www.bilibili.com/video/BV1Ct4ze3EPa?vd_source=f1b064469c11310179691e9a2a51b0ed">教程</a>。同样需要感谢本网页所使用的开源<code>Leaflet</code>框架，他们的开源精神为本网页提供了坚实的基础。</p>
-        <!-- <ul>
-          <li><strong>坐标约定：</strong>平面像素坐标，点位用 <code>(x, y)</code></li>
-          <li>Leaflet 内部坐标为 <code>[y, x]</code>（即 <code>[lat, lng]</code>）</li>
-          <li>瓦片路径：<code>assets/tiles/{z}/{x}/{y}.png</code></li>
-        </ul> -->
       </div>
     </aside>
   </div>
@@ -249,11 +245,23 @@
       return cfg;
     }
 
+    async function fetchJsonOrNull(path) {
+      const res = await fetch(path, { cache: "no-store" });
+      if (res.status === 404) return null;
+      if (!res.ok) throw new Error(`${path} status ${res.status}`);
+      return res.json();
+    }
+
     async function loadExternalConfig() {
-      const res = await fetch("./tiles.json", { cache: "no-store" });
-      if (!res.ok) throw new Error(`tiles.json status ${res.status}`);
-      const json = await res.json();
-      return normalizeConfig(mergeConfig(DEFAULT_CONFIG, json));
+      const base = await fetchJsonOrNull("./tiles.json");
+      if (!base) throw new Error("tiles.json missing");
+
+      // 可选本地覆盖配置（不入 Git）：例如将 hud.visible 设为 true。
+      const localOverride = await fetchJsonOrNull("./tiles.local.json");
+
+      const withBase = mergeConfig(DEFAULT_CONFIG, base);
+      const merged = localOverride ? mergeConfig(withBase, localOverride) : withBase;
+      return normalizeConfig(merged);
     }
 
     function getImageScale() {
@@ -366,6 +374,10 @@
     const sidebarIcon = document.getElementById("sidebarIcon");
     const clearSelectionBtn = document.getElementById("clearSelectionBtn");
     const clearSelectionIcon = document.getElementById("clearSelectionIcon");
+    // 页面初始加载后自动隐藏侧边栏的延时（毫秒）
+    // 1000 = 1 秒；0 = 立即隐藏；负数或非数字 = 不自动隐藏
+    const INITIAL_SIDEBAR_HIDE_DELAY_MS = 500;
+    let initialSidebarHideTimer = null;
 
     clearSelectionBtn.addEventListener("click", clearSidebar);
 
@@ -377,7 +389,24 @@
       clearSelectionBtn?.classList.add("has-icon");
     }
 
+    function cancelInitialSidebarAutoHide() {
+      if (initialSidebarHideTimer === null) return;
+      window.clearTimeout(initialSidebarHideTimer);
+      initialSidebarHideTimer = null;
+    }
+
+    function scheduleInitialSidebarHide() {
+      cancelInitialSidebarAutoHide();
+      const delay = Number(INITIAL_SIDEBAR_HIDE_DELAY_MS);
+      if (!Number.isFinite(delay) || delay < 0) return;
+      initialSidebarHideTimer = window.setTimeout(() => {
+        setSidebarVisible(false);
+        initialSidebarHideTimer = null;
+      }, delay);
+    }
+
     function setSidebarVisible(visible) {
+      if (visible) cancelInitialSidebarAutoHide();
       appRoot.classList.toggle("sidebar-hidden", !visible);
       // Map container size changes when sidebar is toggled; force Leaflet to recompute tiles.
       requestAnimationFrame(() => {
@@ -886,7 +915,7 @@
       initTextLayers();
       initMarkers();
       initTexts();
-      setSidebarVisible(false);
+      scheduleInitialSidebarHide();
       refreshAll();
     }
 
