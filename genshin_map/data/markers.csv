@@ -29,3 +29,6 @@ daxing,大兴,13481.5,11444.8,7,./assets/anchor.png,"[20.06, 30.62]","[10.03, 30
 luoyang,洛阳,12363.25,9937.25,5,./assets/city_center.png,"[26.1, 40.25]","[13.05, 40.25]",city_center,占位符,河南省 · 洛阳市,
 guohuayuan,中国国花园,12358.75,9922.25,7,./assets/special_spot/guohuayuan.png,"[45.4, 30.6]","[22.7, 15.3]",land_mark,唯有牡丹真国色，花开时节动京城。,洛阳市 · 洛龙区,./assets/photos/guohuayuan.jpg
 longmenshiku,龙门石窟,12369.75,9900.5,7,./assets/special_spot/longmenshiku.png,"[36.0, 50.0]","[18.0, 25.0]",land_mark,占位符,洛阳市 · 洛龙区,
+KMG,昆明长水机场,9548.75,7139.25,7,,,,airport,占位符,昆明市 · 官渡区,
+PEK,北京首都国际机场,13572.5,11527.75,7,,,,airport,占位符,北京市 · 顺义区,
+PKX,北京大兴机场,13521,11362,7,,,,airport,占位符,北京市 · 大兴区,

@@ -64,6 +64,14 @@ FIXED_TYPE_DEFAULTS = {
         "level": 1,
         "tags": ["info", "panel"],
     },
+    "airport": {
+        "min_zoom": 7,
+        "url": "./assets/special_spot/jichang.png",
+        "size": [45,32],
+        "anchor": [22.5,16],
+        "level": 1,
+        "tags": ["info", "panel"],
+    },
 }
 
 GENERIC_DEFAULTS = {

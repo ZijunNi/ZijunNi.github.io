@@ -23,7 +23,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "北京市 · 延庆区",
       "photo": "./assets/photos/badalingchangcheng.jpg"
     }
@@ -52,7 +52,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "昆明市 · 五华区"
     }
   },
@@ -80,7 +80,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "孝感市 · 孝南区"
     }
   },
@@ -108,7 +108,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "武汉市 · 武昌区"
     }
   },
@@ -137,7 +137,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "北京市"
     }
   },
@@ -166,7 +166,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "天津市"
     }
   },
@@ -195,7 +195,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "山西省 · 大同市"
     }
   },
@@ -224,7 +224,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "河北省 · 廊坊市"
     }
   },
@@ -253,7 +253,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "河北省 · 保定市"
     }
   },
@@ -282,7 +282,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "河北省 · 张家口市"
     }
   },
@@ -311,7 +311,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "云南省 · 昆明市"
     }
   },
@@ -340,7 +340,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "云南省 · 大理白族自治州",
       "photo": "./assets/photos/dali.jpg"
     }
@@ -370,7 +370,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "江西省 · 南昌市"
     }
   },
@@ -399,7 +399,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "江西省 · 景德镇市"
     }
   },
@@ -428,7 +428,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "安徽省 · 合肥市"
     }
   },
@@ -457,7 +457,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "湖北省 · 武汉市"
     }
   },
@@ -486,7 +486,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "湖北省 · 孝感市"
     }
   },
@@ -515,7 +515,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "湖北省 · 汉川市"
     }
   },
@@ -544,7 +544,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "黑龙江省 · 哈尔滨市"
     }
   },
@@ -573,7 +573,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "黑龙江省 · 佳木斯市"
     }
   },
@@ -602,7 +602,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "河北省 · 保定市"
     }
   },
@@ -631,7 +631,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "北京市 · 大兴区"
     }
   },
@@ -660,7 +660,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "河南省 · 洛阳市"
     }
   },
@@ -688,7 +688,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "洛阳市 · 洛龙区",
       "photo": "./assets/photos/guohuayuan.jpg"
     }
@@ -717,8 +717,95 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-04-13",
+      "updatedAt": "2026-04-16",
       "location": "洛阳市 · 洛龙区"
+    }
+  },
+  {
+    "id": "KMG",
+    "name": "昆明长水机场",
+    "level": 1,
+    "x": 9548.75,
+    "y": 7139.25,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/special_spot/jichang.png",
+      "size": [
+        45.0,
+        32.0
+      ],
+      "anchor": [
+        22.5,
+        16.0
+      ]
+    },
+    "info": {
+      "type": "airport",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-16",
+      "location": "昆明市 · 官渡区"
+    }
+  },
+  {
+    "id": "PEK",
+    "name": "北京首都国际机场",
+    "level": 1,
+    "x": 13572.5,
+    "y": 11527.75,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/special_spot/jichang.png",
+      "size": [
+        45.0,
+        32.0
+      ],
+      "anchor": [
+        22.5,
+        16.0
+      ]
+    },
+    "info": {
+      "type": "airport",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-16",
+      "location": "北京市 · 顺义区"
+    }
+  },
+  {
+    "id": "PKX",
+    "name": "北京大兴机场",
+    "level": 1,
+    "x": 13521.0,
+    "y": 11362.0,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/special_spot/jichang.png",
+      "size": [
+        45.0,
+        32.0
+      ],
+      "anchor": [
+        22.5,
+        16.0
+      ]
+    },
+    "info": {
+      "type": "airport",
+      "description": "占位符",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-04-16",
+      "location": "北京市 · 大兴区"
     }
   }
 ];
