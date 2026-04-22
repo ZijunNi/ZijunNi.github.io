@@ -10885,6 +10885,63 @@ body.academics-page {
   transition: opacity 1s ease-in-out;
 }
 
+/* 文案毛玻璃背景，包裹文字本身并在边界渐隐 */
+.caption-glass {
+  position: relative;
+  display: inline-block;
+  max-width: min(92vw, 56rem);
+  padding: clamp(0.8rem, 1.8vw, 1.2rem) clamp(1rem, 2.2vw, 1.6rem);
+  border-radius: 1.2rem;
+  isolation: isolate;
+}
+
+.caption-glass::before {
+  content: "";
+  position: absolute;
+  inset: -0.7rem -0.9rem;
+  z-index: -1;
+  border-radius: 2rem;
+  background: radial-gradient(
+    120% 145% at 20% 20%,
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(255, 255, 255, 0.2) 45%,
+    rgba(255, 255, 255, 0.08) 72%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  backdrop-filter: blur(14px) saturate(120%);
+  box-shadow: 0 0.7rem 1.8rem rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.caption-glass:hover::before,
+.caption-glass:focus-within::before {
+  opacity: 1;
+}
+
+.caption-glass .chinese_title {
+  margin-top: 0 !important;
+}
+
+.caption-glass .pic_date {
+  margin-bottom: 0;
+}
+
+/* 低兼容环境下的兜底背景 */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .caption-glass::before {
+    background: radial-gradient(
+      120% 145% at 20% 20%,
+      rgba(20, 24, 32, 0.52) 0%,
+      rgba(20, 24, 32, 0.42) 48%,
+      rgba(20, 24, 32, 0.2) 76%,
+      rgba(20, 24, 32, 0) 100%
+    );
+  }
+}
+
 /* 显示文字 */
 .caption-container.active {
   opacity: 1;
@@ -10908,4 +10965,3 @@ body.academics-page {
 .pic_date {
   margin: 0 auto;
 }
-

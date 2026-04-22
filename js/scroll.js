@@ -107,9 +107,11 @@ function initCarousel() {
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-10">
-                        <h1 class="mt-5 chinese_title">${backgroundData[index].chinese_title}</h1>
-                        <h1 class="mt-0-mainpage-title english_title">${backgroundData[index].english_title}</h1>
-                        <p class="pic_date">${backgroundData[index].pic_date}</p>
+                        <div class="caption-glass">
+                            <h1 class="mt-5 chinese_title">${backgroundData[index].chinese_title}</h1>
+                            <h1 class="mt-0-mainpage-title english_title">${backgroundData[index].english_title}</h1>
+                            <p class="pic_date">${backgroundData[index].pic_date}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,9 +166,11 @@ function initCarousel() {
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-10">
-                    <h1 class="mt-5 chinese_title">${backgroundData[currentIndex].chinese_title}</h1>
-                    <h1 class="mt-0-mainpage-title english_title">${backgroundData[currentIndex].english_title}</h1>
-                    <p class="pic_date">${backgroundData[currentIndex].pic_date}</p>
+                    <div class="caption-glass">
+                        <h1 class="mt-5 chinese_title">${backgroundData[currentIndex].chinese_title}</h1>
+                        <h1 class="mt-0-mainpage-title english_title">${backgroundData[currentIndex].english_title}</h1>
+                        <p class="pic_date">${backgroundData[currentIndex].pic_date}</p>
+                    </div>
                 </div>
             </div>
         </div>
