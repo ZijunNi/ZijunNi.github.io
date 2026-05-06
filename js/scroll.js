@@ -48,8 +48,30 @@ const backgroundData = [
         english_title: 'Red Chamber, Wuhan, China',
         pic_date: '<span style="font-size:90%;">摄于2025年3月25日 Pictured at Mar. 25th, 2025</span>'
     },   
-
-    
+    {
+        image: './assets/images/background/bg11.jpg',
+        chinese_title: '嵊泗 · 枸杞岛',
+        english_title: 'Goji Island, Shengsi, China',
+        pic_date: '摄于2026年5月1日 Pictured at May 1st, 2026'
+    },
+    {
+        image: './assets/images/background/bg13.jpg',
+        chinese_title: '大理 · 苍山',
+        english_title: 'Cangshan, Dali, China',
+        pic_date: '摄于2025年5月31日 Pictured at May 31st, 2026'
+    },    
+    {
+        image: './assets/images/background/bg14.jpg',
+        chinese_title: '德国 · 德累斯顿',
+        english_title: 'Dresden, Deutschland<br/>Dresden, Germany',
+        pic_date: '摄于2025年11月14日 Pictured at Nov. 14th, 2025'
+    },    
+    {
+        image: './assets/images/background/bg15.jpg',
+        chinese_title: '蔚县 · 麻田岭',
+        english_title: 'Madianling, Yuxian, China',
+        pic_date: '摄于2025年10月3日 Pictured at Oct. 3rd, 2025'
+    },    
     // 暗色图片专用样式
     {
         image: './assets/images/background/bg7.webp',
@@ -60,8 +82,14 @@ const backgroundData = [
     {
         image: './assets/images/background/bg10.webp',
         chinese_title: '<span style="color: var(--bs-gray-400);">北京 · 月全食</span>',
-        english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Lunar Eclipse Shot in Beijing</span>',
+        english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Lunar Eclipse Shot in Beijing, China</span>',
         pic_date: '<span style="color: var(--bs-gray-400);">摄于2025年9月8日 Pictured at Sept. 8th, 2025</span>'
+    },  
+    {
+        image: './assets/images/background/bg12.jpg',
+        chinese_title: '<span style="color: var(--bs-gray-400);">上海 · 陆家嘴商务区</span>',
+        english_title: '<span style="color: var(--bs-gray-400); font-size:80%;">Lujiazui CBD, Shanghai, China</span>',
+        pic_date: '<span style="color: var(--bs-gray-400);">摄于2026年5月3日 Pictured at May 3rd, 2026</span>'
     },    
 ];
 
