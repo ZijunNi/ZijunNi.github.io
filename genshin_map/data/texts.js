@@ -187,6 +187,27 @@ window.texts = [
       // photo: "./assets/photos/yunnan.jpg",
       // photoAlt: "云南省风景"
     }
+  },
+
+  {
+    id: "jiangzhehu",
+    name: "江浙沪地区",
+    level: 1,
+    x: 14776, y: 8800,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "江浙沪地区", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "3%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "位于中国东部沿海，是中国经济最发达的地区之一。",
+      location: "江浙沪地区",
+      // photo: "./assets/photos/yunnan.jpg",
+      // photoAlt: "云南省风景"
+    }
   }
 
 

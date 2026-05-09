@@ -47,7 +47,7 @@ CSV_REQUIRED_COLUMNS = [
 CSV_EXPORT_ENCODING = "utf-8-sig"
 CSV_IMPORT_ENCODINGS = ("utf-8-sig", "utf-8", "gb18030")
 
-FIXED_TYPE_DEFAULTS = {
+FIXED_TYPE_DEFAULTS = { # 在此处设置常用固定类型
     "city_center": {
         "min_zoom": 5,
         "url": "./assets/city_center.png",
