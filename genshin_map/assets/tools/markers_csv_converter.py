@@ -72,7 +72,31 @@ FIXED_TYPE_DEFAULTS = { # 在此处设置常用固定类型
         "level": 1,
         "tags": ["info", "panel"],
     },
-}
+    "restaurant": {
+        "min_zoom": 7,
+        "url": "./assets/special_spot/canting.png",
+        "size": [28,33],
+        "anchor": [14,33],
+        "level": 1,
+        "tags": ["info", "panel"],
+    },
+    "market": {
+        "min_zoom": 7,
+        "url": "./assets/special_spot/gouwudian.png",
+        "size": [32,32],
+        "anchor": [16,32],
+        "level": 1,
+        "tags": ["info", "panel"],
+    },
+    "port": {
+        "min_zoom": 7,
+        "url": "./assets/port.png",
+        "size": [32,32],
+        "anchor": [16,16],
+        "level": 1,
+        "tags": ["info", "panel"],
+    },
+    }
 
 GENERIC_DEFAULTS = {
     "min_zoom": 7,

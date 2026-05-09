@@ -19,11 +19,11 @@ window.markers = [
     },
     "info": {
       "type": "land_mark",
-      "description": "北依军都山脊，南瞰京畿平野，八达岭长城踞于燕山与太行交错的山结之上。\n\n城墙将云天与大地、塞外与中原劈作两半。自敌楼的箭窗望出去，千峰沉默，万壑回响，唯有山桃花年年如约。不远处，百年前，詹天佑在山谷里画下“人”字形铁路，钢轨贴着山势缓缓攀爬，为积弱的故土驮来一缕远方的希望；而今，银白色的高速列车在地下深处悄然穿过，为崭新的时代写下无声飞驰的气象。",
+      "description": "北依军都山脊，南瞰京畿平野，八达岭长城踞于燕山与太行交错的山结之上。\r\n\r\n城墙将云天与大地、塞外与中原劈作两半。自敌楼的箭窗望出去，千峰沉默，万壑回响，唯有山桃花年年如约。不远处，百年前，詹天佑在山谷里画下“人”字形铁路，钢轨贴着山势缓缓攀爬，为积弱的故土驮来一缕远方的希望；而今，银白色的高速列车在地下深处悄然穿过，为崭新的时代写下无声飞驰的气象。",
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "北京市 · 延庆区",
       "photo": "./assets/photos/badalingchangcheng.jpg"
     }
@@ -52,7 +52,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "昆明市 · 五华区"
     }
   },
@@ -80,7 +80,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "孝感市 · 孝南区"
     }
   },
@@ -108,7 +108,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "武汉市 · 武昌区"
     }
   },
@@ -132,12 +132,12 @@ window.markers = [
     },
     "info": {
       "type": "city_center",
-      "description": "北倚燕山余脉，西承太行屏障，南向华北平原徐徐铺展，北京安坐于山川收束与大地开阔的交界处，大自然在此设下经略四方的格局。\n 城市中轴线如一条缓缓展开的时间之线，自紫禁城的屋脊延伸至天安门广场的开阔空间，王朝的秩序与时代的叙事在此交汇；未名湖畔，燕园静立，书声在林影与旧楼之间回荡，思想悄然生长；远望城郊，群山起伏，古关与驿道隐没在岁月之中，静静诉说往昔。山河依旧、人事却不断更替，这座城市究竟是在被时间塑造，还是在与时间对话？",
+      "description": "北倚燕山余脉，西承太行屏障，南向华北平原徐徐铺展，北京安坐于山川收束与大地开阔的交界处，大自然在此设下经略四方的格局。\r\n 城市中轴线如一条缓缓展开的时间之线，自紫禁城的屋脊延伸至天安门广场的开阔空间，王朝的秩序与时代的叙事在此交汇；未名湖畔，燕园静立，书声在林影与旧楼之间回荡，思想悄然生长；远望城郊，群山起伏，古关与驿道隐没在岁月之中，静静诉说往昔。山河依旧、人事却不断更替，这座城市究竟是在被时间塑造，还是在与时间对话？",
       "tags": [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "北京市"
     }
   },
@@ -166,7 +166,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "天津市"
     }
   },
@@ -195,7 +195,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "山西省 · 大同市"
     }
   },
@@ -224,7 +224,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "河北省 · 廊坊市"
     }
   },
@@ -253,7 +253,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "河北省 · 保定市"
     }
   },
@@ -282,7 +282,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "河北省 · 张家口市"
     }
   },
@@ -306,12 +306,12 @@ window.markers = [
     },
     "info": {
       "type": "city_center",
-      "description": "南拥滇池烟波，东枕金马晴岚，西倚碧鸡苍翠，北收乌蒙余势，昆明坐落于高原台地与湖泊襟怀之间。\n翠湖波光如散落的旧笺，海鸥年年衔来远方的消息，讲武堂的黄墙沉默伫立，共和的初啼曾在此划破晨雾；河山破碎之际，西南联大在春城留下足迹，保留下文明的火种；海晏河清之时，云师附中于故地续写弦歌，传扬着先贤的薪火。春城昆明，向每一位旅者敞开怀抱。",
+      "description": "南拥滇池烟波，东枕金马晴岚，西倚碧鸡苍翠，北收乌蒙余势，昆明坐落于高原台地与湖泊襟怀之间。\r\n翠湖波光如散落的旧笺，海鸥年年衔来远方的消息，讲武堂的黄墙沉默伫立，共和的初啼曾在此划破晨雾；河山破碎之际，西南联大在春城留下足迹，保留下文明的火种；海晏河清之时，云师附中于故地续写弦歌，传扬着先贤的薪火。春城昆明，向每一位旅者敞开怀抱。",
       "tags": [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "云南省 · 昆明市"
     }
   },
@@ -335,12 +335,12 @@ window.markers = [
     },
     "info": {
       "type": "city_center",
-      "description": "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。",
+      "description": "西枕苍山巍峨，东浮洱海烟波，南望佛国钟磬，北依古道遗风，大理坐落于苍洱坝子的暖阳之中。\r\n 苍山巍峨如屏，拱卫着千载古城的烟火人间；洱海澄波似镜，倒映出三塔凌空的清寂倒影。崇圣寺钟声随风远播，诉说着妙香古国的慈悲与安宁；喜洲古城的稻浪深处，白族照壁静静伫立，刻写下耕读传家的古风。千年的“风花雪月”，正静待旅者的探索。",
       "tags": [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "云南省 · 大理白族自治州",
       "photo": "./assets/photos/dali.jpg"
     }
@@ -370,7 +370,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "江西省 · 南昌市"
     }
   },
@@ -399,7 +399,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "江西省 · 景德镇市"
     }
   },
@@ -428,7 +428,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "安徽省 · 合肥市"
     }
   },
@@ -457,7 +457,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "湖北省 · 武汉市"
     }
   },
@@ -486,7 +486,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "湖北省 · 孝感市"
     }
   },
@@ -515,7 +515,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "湖北省 · 汉川市"
     }
   },
@@ -544,7 +544,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "黑龙江省 · 哈尔滨市"
     }
   },
@@ -573,7 +573,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "黑龙江省 · 佳木斯市"
     }
   },
@@ -602,7 +602,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "河北省 · 保定市"
     }
   },
@@ -631,7 +631,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "北京市 · 大兴区"
     }
   },
@@ -660,7 +660,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "河南省 · 洛阳市"
     }
   },
@@ -688,7 +688,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "洛阳市 · 洛龙区",
       "photo": "./assets/photos/guohuayuan.jpg"
     }
@@ -717,7 +717,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "洛阳市 · 洛龙区"
     }
   },
@@ -746,7 +746,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "昆明市 · 官渡区"
     }
   },
@@ -775,7 +775,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "北京市 · 顺义区"
     }
   },
@@ -804,7 +804,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "北京市 · 大兴区"
     }
   },
@@ -833,7 +833,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "上海市"
     }
   },
@@ -862,8 +862,153 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-09",
+      "updatedAt": "2026-05-10",
       "location": "浙江省 · 舟山市"
+    }
+  },
+  {
+    "id": "jiuzhuribenliaoli",
+    "name": "久竹の日本料理居酒屋",
+    "level": 1,
+    "x": 15024.25,
+    "y": 8930.75,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/special_spot/canting.png",
+      "size": [
+        28.0,
+        33.0
+      ],
+      "anchor": [
+        14.0,
+        33.0
+      ]
+    },
+    "info": {
+      "type": "restaurant",
+      "description": "这家店彻底终结了我们对寿司郎的欲望。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-05-10",
+      "location": "上海市 · 静安区",
+      "photo": "./assets/photos/jiuzhuribenliaoli.jpg"
+    }
+  },
+  {
+    "id": "shenjiawan",
+    "name": "沈家湾码头",
+    "level": 1,
+    "x": 15214.5,
+    "y": 8739.0,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/port.png",
+      "size": [
+        32.0,
+        32.0
+      ],
+      "anchor": [
+        16.0,
+        16.0
+      ]
+    },
+    "info": {
+      "type": "port",
+      "description": "位于洋山岛的客运码头，是上海前往嵊泗列岛的集散地。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-05-10",
+      "location": "舟山市 · 嵊泗县"
+    }
+  },
+  {
+    "id": "gouqi",
+    "name": "枸杞岛",
+    "level": 1,
+    "x": 15410.0,
+    "y": 8773.0,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/port.png",
+      "size": [
+        32.0,
+        32.0
+      ],
+      "anchor": [
+        16.0,
+        16.0
+      ]
+    },
+    "info": {
+      "type": "port",
+      "description": "嵊山岛是嵊泗列岛中最靠东的海岛，其通过三礁江大桥与枸杞岛相连。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-05-10",
+      "location": "舟山市 · 嵊泗县"
+    }
+  },
+  {
+    "id": "shanghaiwaitan",
+    "name": "上海外滩",
+    "level": 8,
+    "x": 15046.25,
+    "y": 8916.5,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/special_spot/waitan.png",
+      "size": [
+        40.0,
+        30.0
+      ],
+      "anchor": [
+        20.0,
+        30.0
+      ]
+    },
+    "info": {
+      "type": "waitan",
+      "description": "这里的一侧，是这个国家百年前的屈辱历史的现实记忆，另一侧，则是这个国家如今跻身于世界民族之林的真实写照。",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-05-10",
+      "location": "上海市 · 黄浦区",
+      "photo": "./assets/photos/waitan.jpeg"
+    }
+  },
+  {
+    "id": "donghaidaqiao",
+    "name": "东海大桥",
+    "level": 8,
+    "x": 15176.5,
+    "y": 8779.0,
+    "min_zoom": 7.0,
+    "icon": {
+      "url": "./assets/special_spot/donghaidaqiao.png",
+      "size": [
+        80.0,
+        32.0
+      ],
+      "anchor": [
+        40.0,
+        32.0
+      ]
+    },
+    "info": {
+      "type": "donghaidaqiao",
+      "description": "连接上海南汇新城与洋山岛的跨海大桥。",
+      "tags": [
+        "demo"
+      ],
+      "updatedAt": "2026-05-10",
+      "location": "上海市 · 浦东新区"
     }
   }
 ];

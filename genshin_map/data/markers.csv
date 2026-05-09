@@ -34,3 +34,8 @@ PEK,北京首都国际机场,13572.5,11527.75,7,,,,airport,占位符,北京市 �
 PKX,北京大兴机场,13521,11362,7,,,,airport,占位符,北京市 · 大兴区,
 shanghai,上海,15031,8912,,,,,city_center,占位符,上海市,
 shengsi,嵊泗,15317,8775,,,,,anchor,占位符,浙江省 · 舟山市,
+jiuzhuribenliaoli,久竹の日本料理居酒屋,15024.25,8930.75,,,,,restaurant,这家店彻底终结了我们对寿司郎的欲望。,上海市 · 静安区,./assets/photos/jiuzhuribenliaoli.jpg
+shenjiawan,沈家湾码头,15214.5,8739,,,,,port,位于洋山岛的客运码头，是上海前往嵊泗列岛的集散地。,舟山市 · 嵊泗县,
+gouqi,枸杞岛,15410,8773,,,,,port,嵊山岛是嵊泗列岛中最靠东的海岛，其通过三礁江大桥与枸杞岛相连。,舟山市 · 嵊泗县,
+shanghaiwaitan,上海外滩,15046.25,8916.5,7,./assets/special_spot/waitan.png,"[40,30]","[20,30]",waitan,这里的一侧，是这个国家百年前的屈辱历史的现实记忆，另一侧，则是这个国家如今跻身于世界民族之林的真实写照。,上海市 · 黄浦区,./assets/photos/waitan.jpeg
+donghaidaqiao,东海大桥,15176.5,8779,7,./assets/special_spot/donghaidaqiao.png,"[80,32]","[40,32]",donghaidaqiao,连接上海南汇新城与洋山岛的跨海大桥。,上海市 · 浦东新区,
