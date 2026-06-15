@@ -2,3 +2,4 @@
 .DS_Stor*
 genshin_map/.DS_Store
 genshin_map/tiles.local.json
+genshin_map/assets/raw_photo/

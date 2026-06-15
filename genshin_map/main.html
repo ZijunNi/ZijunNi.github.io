@@ -277,6 +277,7 @@
     const markers = Array.isArray(window.markers) ? window.markers : [];
     const roads = Array.isArray(window.roads) ? window.roads : [];
     const texts = Array.isArray(window.texts) ? window.texts : [];
+    const markerById = new Map(markers.map(m => [String(m.id), m]));
 
     /**
      * =====================================================
@@ -360,6 +361,98 @@
         x: (p.x - origin.x) / scale,
         y: (pyRaw - origin.y) / scale
       };
+    }
+
+    /**
+     * =====================================================
+     * Marker deep links
+     * =====================================================
+     * Supported URLs:
+     *   main.html#marker=qingdao
+     *   main.html#qingdao
+     *   main.html?marker=qingdao
+     */
+    function readLinkedMarkerId() {
+      const queryMarker = new URLSearchParams(window.location.search).get("marker");
+      if (queryMarker) return queryMarker;
+
+      const rawHash = window.location.hash.replace(/^#/, "").trim();
+      if (!rawHash) return "";
+
+      const hashParams = new URLSearchParams(rawHash);
+      const hashMarker = hashParams.get("marker");
+      if (hashMarker) return hashMarker;
+
+      if (!rawHash.includes("=") && !rawHash.includes("&")) {
+        return decodeURIComponent(rawHash);
+      }
+      return "";
+    }
+
+    function setLinkedMarkerId(markerId) {
+      const url = new URL(window.location.href);
+      url.hash = `marker=${encodeURIComponent(markerId)}`;
+      window.history.replaceState(null, "", url.toString());
+    }
+
+    function clearLinkedMarkerId() {
+      if (!readLinkedMarkerId()) return;
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete("marker");
+      url.hash = "";
+      window.history.replaceState(null, "", url.toString());
+    }
+
+    function getMarkerFocusZoom(markerData) {
+      const directMinZoom = Number(markerData?.min_zoom);
+      const directMaxZoom = Number(markerData?.max_zoom);
+      const levelRule = CONFIG.markerLevelRules.find(rule => rule.level === markerData?.level);
+      const levelMinZoom = Number(levelRule?.minZoom);
+      const candidates = [CONFIG.view.zoom, directMinZoom, levelMinZoom]
+        .filter(v => Number.isFinite(v));
+
+      const minZoom = Number.isFinite(CONFIG.zoom.min) ? CONFIG.zoom.min : 0;
+      const maxZoom = Number.isFinite(directMaxZoom)
+        ? Math.min(CONFIG.zoom.max, directMaxZoom)
+        : CONFIG.zoom.max;
+      return Math.min(maxZoom, Math.max(minZoom, ...candidates));
+    }
+
+    function openLinkedMarker(markerId, options = {}) {
+      const markerData = markerById.get(String(markerId));
+      if (!markerData) {
+        console.warn(`[map] Marker link not found: ${markerId}`);
+        return false;
+      }
+
+      const updateUrl = options.updateUrl !== false;
+      const zoom = getMarkerFocusZoom(markerData);
+      map.setView(toLatLng(markerData.x, markerData.y), zoom, { animate: false });
+      refreshAll();
+      showMarkerInSidebar(markerData);
+
+      if (updateUrl) {
+        setLinkedMarkerId(markerData.id);
+      }
+      return true;
+    }
+
+    function openInitialLinkedMarker() {
+      const markerId = readLinkedMarkerId();
+      if (!markerId) return;
+      openLinkedMarker(markerId, { updateUrl: false });
+    }
+
+    function bindMarkerLinkEvents() {
+      window.addEventListener("hashchange", () => {
+        const markerId = readLinkedMarkerId();
+        if (markerId) {
+          openLinkedMarker(markerId, { updateUrl: false });
+        } else {
+          clearSidebar({ updateUrl: false });
+        }
+      });
     }
 
     /**
@@ -588,12 +681,15 @@
       `;
     }
 
-    function clearSidebar() {
+    function clearSidebar(options = {}) {
       sidebarTitle.textContent = "未选择标记";
       sidebarMeta.textContent = "点击地图上的标记点以查看详细信息";
       updateSidebarIcon(null);
       sidebarBody.innerHTML = `<p>已清除选择。</p><p>继续点击标记点以查看详细信息。</p>`;
       setSidebarVisible(false);
+      if (options.updateUrl !== false) {
+        clearLinkedMarkerId();
+      }
     }
 
     /**
@@ -690,6 +786,7 @@
         leafletMarker.on("click", (e) => {
           L.DomEvent.stopPropagation(e);
           showMarkerInSidebar(m);
+          setLinkedMarkerId(m.id);
         });
 
         const group = markerLayersByLevel.get(m.level) ?? markerLayersByLevel.get(1);
@@ -816,6 +913,9 @@
      */
     const hud = document.getElementById("hud");
     const HUD_COORD_DECIMALS = 2;
+    let lastHudMousePixel = null;
+    let hudCopyFeedback = "";
+    let hudCopyFeedbackTimer = null;
 
     function isHudEnabled() {
       return CONFIG?.hud?.visible !== false;
@@ -824,6 +924,77 @@
     function setHudVisible() {
       if (!hud) return;
       hud.style.display = isHudEnabled() ? "" : "none";
+    }
+
+    function formatHudCoordinatePair(px) {
+      return `${px.x.toFixed(HUD_COORD_DECIMALS)}, ${px.y.toFixed(HUD_COORD_DECIMALS)}`;
+    }
+
+    function formatHudCoordinateLabel(px) {
+      return `x=${px.x.toFixed(HUD_COORD_DECIMALS)}, y=${px.y.toFixed(HUD_COORD_DECIMALS)}`;
+    }
+
+    function setHudCopyFeedback(message) {
+      hudCopyFeedback = message;
+      if (hudCopyFeedbackTimer !== null) {
+        window.clearTimeout(hudCopyFeedbackTimer);
+      }
+      hudCopyFeedbackTimer = window.setTimeout(() => {
+        hudCopyFeedback = "";
+        hudCopyFeedbackTimer = null;
+        refreshHud();
+      }, 1200);
+      refreshHud();
+    }
+
+    function copyTextFallback(text) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      if (!ok) throw new Error("document.execCommand('copy') failed");
+    }
+
+    async function copyHudMouseCoordinates() {
+      if (!isHudEnabled() || !lastHudMousePixel) return;
+      const text = formatHudCoordinatePair(lastHudMousePixel);
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          copyTextFallback(text);
+        }
+        setHudCopyFeedback(`已复制：${text}`);
+      } catch (err) {
+        console.error("[map] 坐标复制失败。", err);
+        setHudCopyFeedback("复制失败，请检查浏览器权限");
+      }
+    }
+
+    function isEditableKeyTarget(target) {
+      if (!(target instanceof Element)) return false;
+      const tag = target.tagName.toLowerCase();
+      return tag === "input" || tag === "textarea" || tag === "select" || target.isContentEditable;
+    }
+
+    function bindHudCopyShortcut() {
+      document.addEventListener("keydown", (e) => {
+        if (!isHudEnabled()) return;
+        if (isEditableKeyTarget(e.target)) return;
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        if (e.key.toLowerCase() !== "c") return;
+        if (!lastHudMousePixel) return;
+
+        e.preventDefault();
+        copyHudMouseCoordinates();
+      });
     }
 
     function refreshHud(extraLine = "") {
@@ -837,6 +1008,11 @@
       const scale = getImageScale();
       const centerX = centerPx.x.toFixed(HUD_COORD_DECIMALS);
       const centerY = centerPx.y.toFixed(HUD_COORD_DECIMALS);
+      const mouseLine = extraLine || (lastHudMousePixel ? formatHudCoordinateLabel(lastHudMousePixel) : "");
+      const copyHint = lastHudMousePixel ? ` <span style="color:#666;">按 <code>C</code> 复制</span>` : "";
+      const copyFeedback = hudCopyFeedback
+        ? `<div style="color:#276738;margin-top:4px;">${escapeHtml(hudCopyFeedback)}</div>`
+        : "";
 
       hud.innerHTML = `
         <div><strong>坐标系：</strong><code>CRS.Simple</code>（平面/像素坐标）</div>
@@ -847,7 +1023,8 @@
         <div><strong>标记显示规则：</strong>${escapeHtml(markerRulesText)}</div>
         <div style="color:#666;margin-top:6px;">原图尺寸：<code>${CONFIG.image.width}×${CONFIG.image.height}</code>（像素）</div>
         <div style="color:#666;margin-top:4px;">origin：<code>${origin.x}, ${origin.y}</code>，scale：<code>${scale}</code></div>
-        ${extraLine ? `<div style="margin-top:6px;"><strong>鼠标：</strong>${extraLine}</div>` : ``}
+        ${mouseLine ? `<div style="margin-top:6px;"><strong>鼠标：</strong>${escapeHtml(mouseLine)}${copyHint}</div>` : ``}
+        ${copyFeedback}
       `;
     }
 
@@ -877,7 +1054,8 @@
       map.on("mousemove", (e) => {
         const px = mouseEventToPixelForHud(e);
         if (!px) return;
-        refreshHud(`x=${px.x.toFixed(HUD_COORD_DECIMALS)}, y=${px.y.toFixed(HUD_COORD_DECIMALS)}`);
+        lastHudMousePixel = px;
+        refreshHud(formatHudCoordinateLabel(px));
       });
 
       map.on("click", () => {
@@ -910,6 +1088,8 @@
       initMap();
       setHudVisible();
       bindMapEvents();
+      bindHudCopyShortcut();
+      bindMarkerLinkEvents();
       initRoadLayers();
       initMarkerLayers();
       initTextLayers();
@@ -917,6 +1097,7 @@
       initTexts();
       scheduleInitialSidebarHide();
       refreshAll();
+      openInitialLinkedMarker();
     }
 
     initApp();

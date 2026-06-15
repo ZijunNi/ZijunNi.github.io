@@ -167,7 +167,6 @@ window.texts = [
       // photoAlt: "云南省风景"
     }
   },
-
   {
     id: "heilongjiang",
     name: "黑龙江省",
@@ -188,9 +187,28 @@ window.texts = [
       // photoAlt: "云南省风景"
     }
   },
-
   {
-    id: "jiangzhehu",
+    id: "shandong",
+    name: "山东省",
+    level: 1,
+    x: 14088.00, y: 10396.00,
+    min_zoom: 1,   // 可选：最小显示缩放
+    max_zoom: 4.5,   // 可选：最大显示缩放
+    rich_text: [
+      { text: "山东省", size: 28, color: "#ffffff" },
+      { br: true },
+      { text: "探索度 ", size: 16, color: "#ffffff" },
+      { text: "7%", size: 16, color: "#ffffff" }
+    ],
+    info: {
+      description: "位于中国东部沿海地区，山东半岛深入黄海，分开了黄海与渤海。",
+      location: "山东省",
+      // photo: "./assets/photos/yunnan.jpg",
+      // photoAlt: "云南省风景"
+    }
+  },
+  {
+    id: "shandong",
     name: "江浙沪地区",
     level: 1,
     x: 14776, y: 8800,

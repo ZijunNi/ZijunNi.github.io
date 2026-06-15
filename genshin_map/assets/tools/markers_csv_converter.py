@@ -64,6 +64,14 @@ FIXED_TYPE_DEFAULTS = { # 在此处设置常用固定类型
         "level": 1,
         "tags": ["info", "panel"],
     },
+    "mountain": {
+        "min_zoom": 7,
+        "url": "./assets/mountain.png",
+        "size": [26,26],
+        "anchor": [13, 13],
+        "level": 1,
+        "tags": ["info", "panel"],
+    },
     "airport": {
         "min_zoom": 7,
         "url": "./assets/special_spot/jichang.png",

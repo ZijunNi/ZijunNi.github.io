@@ -23,7 +23,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "北京市 · 延庆区",
       "photo": "./assets/photos/badalingchangcheng.jpg"
     }
@@ -52,7 +52,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "昆明市 · 五华区"
     }
   },
@@ -80,7 +80,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "孝感市 · 孝南区"
     }
   },
@@ -108,7 +108,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "武汉市 · 武昌区"
     }
   },
@@ -137,7 +137,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "北京市"
     }
   },
@@ -166,7 +166,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "天津市"
     }
   },
@@ -195,7 +195,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "山西省 · 大同市"
     }
   },
@@ -224,7 +224,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "河北省 · 廊坊市"
     }
   },
@@ -253,7 +253,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "河北省 · 保定市"
     }
   },
@@ -282,7 +282,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "河北省 · 张家口市"
     }
   },
@@ -311,7 +311,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "云南省 · 昆明市"
     }
   },
@@ -340,7 +340,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "云南省 · 大理白族自治州",
       "photo": "./assets/photos/dali.jpg"
     }
@@ -370,7 +370,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "江西省 · 南昌市"
     }
   },
@@ -399,7 +399,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "江西省 · 景德镇市"
     }
   },
@@ -428,7 +428,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "安徽省 · 合肥市"
     }
   },
@@ -457,7 +457,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "湖北省 · 武汉市"
     }
   },
@@ -486,7 +486,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "湖北省 · 孝感市"
     }
   },
@@ -515,7 +515,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "湖北省 · 汉川市"
     }
   },
@@ -544,7 +544,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "黑龙江省 · 哈尔滨市"
     }
   },
@@ -573,7 +573,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "黑龙江省 · 佳木斯市"
     }
   },
@@ -602,7 +602,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "河北省 · 保定市"
     }
   },
@@ -631,7 +631,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "北京市 · 大兴区"
     }
   },
@@ -660,7 +660,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "河南省 · 洛阳市"
     }
   },
@@ -688,7 +688,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "洛阳市 · 洛龙区",
       "photo": "./assets/photos/guohuayuan.jpg"
     }
@@ -717,7 +717,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "洛阳市 · 洛龙区"
     }
   },
@@ -746,7 +746,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "昆明市 · 官渡区"
     }
   },
@@ -775,7 +775,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "北京市 · 顺义区"
     }
   },
@@ -804,7 +804,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "北京市 · 大兴区"
     }
   },
@@ -833,7 +833,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "上海市"
     }
   },
@@ -862,7 +862,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "浙江省 · 舟山市"
     }
   },
@@ -891,7 +891,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "上海市 · 静安区",
       "photo": "./assets/photos/jiuzhuribenliaoli.jpg"
     }
@@ -921,7 +921,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "舟山市 · 嵊泗县"
     }
   },
@@ -950,7 +950,7 @@ window.markers = [
         "info",
         "panel"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "舟山市 · 嵊泗县"
     }
   },
@@ -978,7 +978,7 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "上海市 · 黄浦区",
       "photo": "./assets/photos/waitan.jpeg"
     }
@@ -1007,8 +1007,128 @@ window.markers = [
       "tags": [
         "demo"
       ],
-      "updatedAt": "2026-05-10",
+      "updatedAt": "2026-06-15",
       "location": "上海市 · 浦东新区"
+    }
+  },
+  {
+    "id": "qingdao",
+    "name": "青岛",
+    "level": 1,
+    "x": 14689.75,
+    "y": 10341.5,
+    "min_zoom": 5,
+    "icon": {
+      "url": "./assets/city_center.png",
+      "size": [
+        26.1,
+        40.25
+      ],
+      "anchor": [
+        13.05,
+        40.25
+      ]
+    },
+    "info": {
+      "type": "city_center",
+      "description": "山东省东部的沿海城市，因环抱胶州湾而成为绝佳的深水良港，历史上曾是重要的贸易和军事要地。因曾被德国殖民者占领而拥有中国大陆为数不多的德式建筑风貌。如今已经是山东省乃至华北地区最发达的城市之一。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-06-15",
+      "location": "山东省 · 青岛市",
+      "photo": "./assets/photos/qingdao.jpg"
+    }
+  },
+  {
+    "id": "shazikou",
+    "name": "沙子口",
+    "level": 1,
+    "x": 14760.75,
+    "y": 10353.5,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/anchor.png",
+      "size": [
+        20.06,
+        30.62
+      ],
+      "anchor": [
+        10.03,
+        30.92
+      ]
+    },
+    "info": {
+      "type": "anchor",
+      "description": "青岛市郊的一座小镇，静静的渔港中停放着尚未出海的渔船，海风轻拂，海浪轻拍，闲适而放松。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-06-15",
+      "location": "山东省 · 青岛市",
+      "photo": "./assets/photos/shazikou.jpg"
+    }
+  },
+  {
+    "id": "laoshan",
+    "name": "崂山",
+    "level": 1,
+    "x": 14781.0,
+    "y": 10374.25,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/mountain.png",
+      "size": [
+        26.0,
+        26.0
+      ],
+      "anchor": [
+        13.0,
+        13.0
+      ]
+    },
+    "info": {
+      "type": "mountain",
+      "description": "位于青岛东北方向的山峰，海拔约1100米，是中国大陆海岸线上的最高峰，也因此形成了中国大陆海岸线上少见的山海齐聚之奇观。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-06-15",
+      "location": "山东省 · 青岛市",
+      "photo": "./assets/photos/laoshan.jpg"
+    }
+  },
+  {
+    "id": "matianling",
+    "name": "麻田岭",
+    "level": 1,
+    "x": 13057.5,
+    "y": 11409.25,
+    "min_zoom": 7,
+    "icon": {
+      "url": "./assets/mountain.png",
+      "size": [
+        26.0,
+        26.0
+      ],
+      "anchor": [
+        13.0,
+        13.0
+      ]
+    },
+    "info": {
+      "type": "mountain",
+      "description": "位于河北省蔚县的山峰，海拔约2000米，因其高山草甸和松树林的风景被称为“京西阿勒泰”。",
+      "tags": [
+        "info",
+        "panel"
+      ],
+      "updatedAt": "2026-06-15",
+      "location": "河北省 · 张家口市",
+      "photo": "./assets/photos/matianling.jpg"
     }
   }
 ];
