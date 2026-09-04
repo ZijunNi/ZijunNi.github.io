@@ -2,7 +2,9 @@
 """Convert between genshin_map/data/markers.js and CSV.
 
 Usage:
+  将js转化为csv：
   python3 ./genshin_map/assets/tools/markers_csv_converter.py to-csv --in ./genshin_map/data/markers.js --out ./genshin_map/data/markers.csv
+  将csv转化为js：
   python3 ./genshin_map/assets/tools/markers_csv_converter.py to-js  --in ./genshin_map/data/markers.csv --out ./genshin_map/data/markers.js
 """
 
@@ -67,8 +69,8 @@ FIXED_TYPE_DEFAULTS = { # 在此处设置常用固定类型
     "mountain": {
         "min_zoom": 7,
         "url": "./assets/mountain.png",
-        "size": [26,26],
-        "anchor": [13, 13],
+        "size": [37, 26], # mountain.png 为 969x685（宽高比约1.41），以高度26等比缩放
+        "anchor": [18.5, 13],
         "level": 1,
         "tags": ["info", "panel"],
     },
